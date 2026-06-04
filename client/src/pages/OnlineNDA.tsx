@@ -209,44 +209,57 @@ This submission constitutes a legally binding electronic signature under the E-S
 
   return (
     <Layout>
-      <div className="site-header py-10 px-4">
+      <div
+        className="py-16 px-4"
+        style={{ background: "linear-gradient(135deg, #0a0a1a 0%, #0d2030 100%)" }}
+      >
         <div className="max-w-4xl mx-auto">
-          <h1
-            className="text-white font-extrabold text-3xl"
+          <p
+            className="text-[#00b4c8] text-xs uppercase tracking-[0.2em] font-semibold mb-2"
             style={{ fontFamily: "Raleway, sans-serif" }}
+          >
+            For Buyers
+          </p>
+          <h1
+            className="text-white font-extrabold text-4xl mb-3"
+            style={{ fontFamily: "Raleway, sans-serif", letterSpacing: "-0.02em" }}
           >
             Online Non-Disclosure Agreement
           </h1>
+          <p className="text-gray-400 max-w-xl leading-relaxed">
+            Complete this quick, free NDA to receive our confidential listings and speak with {brokerConfig.brokerName}.
+          </p>
         </div>
       </div>
 
       <div className="max-w-3xl mx-auto px-4 py-12">
         {/* Header info */}
-        <div className="mb-8">
-          <div className="font-bold text-gray-800 text-lg" style={{ fontFamily: "Raleway, sans-serif" }}>
-            {brokerConfig.companyName}
+        <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <div className="font-bold text-gray-800 text-lg" style={{ fontFamily: "Raleway, sans-serif" }}>
+              {brokerConfig.companyName}
+            </div>
+            <div className="text-gray-500 text-sm">{brokerConfig.parentCompany}</div>
           </div>
-          <div className="text-gray-500 text-sm">{brokerConfig.parentCompany}</div>
-          <div className="mt-2 text-sm text-gray-600">{brokerConfig.brokerName}</div>
-          <div className="text-sm text-gray-600">{brokerConfig.brokerPhoneDisplay}</div>
-          <a href={`mailto:${brokerConfig.brokerEmail}`} className="text-[#00b4c8] hover:underline text-sm">
-            {brokerConfig.brokerEmail}
-          </a>
+          <div className="text-sm text-gray-600 text-right">
+            <div className="font-semibold text-gray-800">{brokerConfig.brokerName}</div>
+            <a href={`tel:${brokerConfig.brokerPhone}`} className="text-[#00b4c8] hover:underline block">{brokerConfig.brokerPhoneDisplay}</a>
+            <a href={`mailto:${brokerConfig.brokerEmail}`} className="text-[#00b4c8] hover:underline block">{brokerConfig.brokerEmail}</a>
+          </div>
         </div>
 
         <div className="w-12 h-1 bg-[#00b4c8] mb-8" />
 
         <p className="text-gray-600 leading-relaxed mb-4">
-          A Non Disclosure is required to learn about our businesses for sale. Our contract with
-          our business seller clients requires that we collect simple buyer qualification data and a
-          Non-Disclosure. ALL business buyer information is kept strictly confidential and used
-          solely by our company for the purpose of buyer related communication as well as the
-          qualification and non-disclosure.
+          A Non-Disclosure Agreement is required before we can share confidential details about any
+          business for sale. This protects our seller clients and is completely standard practice in
+          business brokerage. Your information is kept strictly confidential and used solely for
+          buyer qualification and communication.
         </p>
         <p className="text-gray-600 leading-relaxed mb-8">
-          Once you complete the quick process below then we will reach out to you to discuss your
-          interest in buying a business and/or with full disclosure on your business of interest.
-          There is <strong>NO Obligation</strong> by completing the online NDA below.
+          Once you complete the quick form below, {brokerConfig.brokerName} will reach out to discuss
+          your interests and share appropriate listings. There is <strong>no obligation</strong> and
+          no cost — completing this NDA is simply the first step toward finding the right business for you.
         </p>
 
         <div className="bg-gray-50 border border-gray-200 rounded p-2 mb-8">
