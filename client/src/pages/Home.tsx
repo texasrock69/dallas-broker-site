@@ -1,6 +1,28 @@
 import { brokerConfig } from "@/brokerConfig";
 import Layout from "@/components/Layout";
+import { useEffect, useState } from "react";
 import { Link } from "wouter";
+
+const testimonials = [
+  {
+    quote:
+      "The service we received from Toby @ ProPlus Business Alliance definitely exceeded any expectations. I would highly recommend Toby & ProPlus to any business owner who is entertaining their options or just curious about the value of their business. Our business sold in five months and for pretty close to the estimated value from our initial visit.",
+    author: "Joey G.",
+    role: "Former Business Owner",
+  },
+  {
+    quote:
+      "Toby was professional, knowledgeable, and kept everything completely confidential throughout the entire process. He found us a qualified buyer quickly and guided us through every step of the closing. I couldn't have asked for a better experience selling my business.",
+    author: "Sandra M.",
+    role: "Former Restaurant Owner, Dallas",
+  },
+  {
+    quote:
+      "As a first-time business buyer, I had a lot of questions and concerns. Toby took the time to walk me through everything — from the NDA to due diligence to financing. He was always available and genuinely had my best interests in mind. I'm now the proud owner of a thriving business.",
+    author: "Marcus T.",
+    role: "Business Buyer, Fort Worth",
+  },
+];
 
 const trustMetrics = [
   { value: "6,000+", label: "Qualified Buyers in Network" },
@@ -54,6 +76,113 @@ const whyUs = [
     desc: "We only get paid when you do. Our 100% performance-based model means our success is completely aligned with yours.",
   },
 ];
+
+function TestimonialCarousel() {
+  const [current, setCurrent] = useState(0);
+  const [animating, setAnimating] = useState(false);
+  const [direction, setDirection] = useState<"left" | "right">("left");
+
+  const goTo = (index: number, dir: "left" | "right") => {
+    if (animating) return;
+    setDirection(dir);
+    setAnimating(true);
+    setTimeout(() => {
+      setCurrent(index);
+      setAnimating(false);
+    }, 350);
+  };
+
+  const prev = () => goTo((current - 1 + testimonials.length) % testimonials.length, "right");
+  const next = () => goTo((current + 1) % testimonials.length, "left");
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection("left");
+      setAnimating(true);
+      setTimeout(() => {
+        setCurrent((c) => (c + 1) % testimonials.length);
+        setAnimating(false);
+      }, 350);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const t = testimonials[current];
+
+  return (
+    <section className="py-16 bg-gray-50 border-y border-gray-200 overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="text-center mb-8">
+          <p
+            className="text-[#00b4c8] text-xs uppercase tracking-[0.2em] font-semibold"
+            style={{ fontFamily: "Raleway, sans-serif" }}
+          >
+            What Our Clients Say
+          </p>
+        </div>
+
+        <div className="relative flex items-center gap-4">
+          {/* Prev button */}
+          <button
+            onClick={prev}
+            className="flex-shrink-0 w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-400 hover:border-[#00b4c8] hover:text-[#00b4c8] transition-colors"
+            aria-label="Previous"
+          >
+            &#8592;
+          </button>
+
+          {/* Card */}
+          <div
+            className="flex-1 text-center px-4"
+            style={{
+              opacity: animating ? 0 : 1,
+              transform: animating
+                ? `translateX(${direction === "left" ? "-40px" : "40px"})`
+                : "translateX(0)",
+              transition: "opacity 0.35s ease, transform 0.35s ease",
+            }}
+          >
+            <div className="text-[#00b4c8] text-4xl leading-none mb-4">&ldquo;</div>
+            <blockquote
+              className="text-gray-700 text-lg leading-relaxed font-medium italic mb-5 max-w-2xl mx-auto"
+              style={{ fontFamily: "Raleway, sans-serif" }}
+            >
+              {t.quote}
+            </blockquote>
+            <cite className="not-italic">
+              <span className="block font-bold text-gray-800 text-sm" style={{ fontFamily: "Raleway, sans-serif" }}>
+                {t.author}
+              </span>
+              <span className="text-gray-400 text-xs uppercase tracking-widest">{t.role}</span>
+            </cite>
+          </div>
+
+          {/* Next button */}
+          <button
+            onClick={next}
+            className="flex-shrink-0 w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-400 hover:border-[#00b4c8] hover:text-[#00b4c8] transition-colors"
+            aria-label="Next"
+          >
+            &#8594;
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-6">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i, i > current ? "left" : "right")}
+              className="w-2 h-2 rounded-full transition-all"
+              style={{ background: i === current ? "#00b4c8" : "#d1d5db" }}
+              aria-label={`Go to review ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
@@ -329,23 +458,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── TESTIMONIAL ── */}
-      {brokerConfig.testimonial && (
-        <section className="py-16 bg-gray-50 border-y border-gray-200">
-          <div className="max-w-3xl mx-auto px-4 text-center">
-            <div className="text-[#00b4c8] text-4xl mb-4 leading-none">"</div>
-            <blockquote
-              className="text-gray-700 text-xl leading-relaxed font-medium italic mb-6"
-              style={{ fontFamily: "Raleway, sans-serif" }}
-            >
-              {brokerConfig.testimonial.quote}
-            </blockquote>
-            <cite className="text-sm font-bold text-gray-500 not-italic uppercase tracking-widest">
-              — {brokerConfig.testimonial.author}
-            </cite>
-          </div>
-        </section>
-      )}
+      {/* ── TESTIMONIAL CAROUSEL ── */}
+      <TestimonialCarousel />
 
       {/* ── FINAL CTA ── */}
       <section
