@@ -11,6 +11,8 @@ const testimonials = [
     role: "Former Business Owner",
     label: "Another Testimonial",
     image: "/manus-storage/testimonial_joey_778975a2.jpg",
+    textSide: "left" as const,
+    // Joey: blurred office background — person is centered/right, text goes left
   },
   {
     quote:
@@ -19,6 +21,8 @@ const testimonials = [
     role: "Former Business Owner",
     label: "Former Business Owner",
     image: "/manus-storage/testimonial_ann_0756a48f.jpg",
+    textSide: "left" as const,
+    // Ann: face is on the right side of the photo — text goes left
   },
   {
     quote:
@@ -27,6 +31,8 @@ const testimonials = [
     role: "Business Owners",
     label: "What People Say",
     image: "/manus-storage/testimonial_richard_d500dfa6.jpg",
+    textSide: "right" as const,
+    // Richard: man walking on bridge is on the left — text goes right
   },
 ];
 
@@ -108,100 +114,108 @@ function TestimonialCarousel() {
 
   const t = testimonials[current];
 
+  // Gradient direction: if text is on left, fade from white-left to transparent-right; if right, reverse
+  const gradientStyle = t.textSide === "right"
+    ? "linear-gradient(to left, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.3) 40%, rgba(255,255,255,0) 65%)"
+    : "linear-gradient(to right, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.3) 40%, rgba(255,255,255,0) 65%)";
+
   return (
     <section
       className="relative overflow-hidden"
       style={{ minHeight: "480px" }}
     >
-      {/* Full-bleed background photo — NO dark overlay, full brightness */}
+      {/* Full-bleed background photo — full brightness, sharpened */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${t.image})`,
           opacity: animating ? 0 : 1,
           transition: "opacity 0.5s ease",
-          filter: "brightness(1.05)",
+          filter: "brightness(1.08) contrast(1.05) saturate(1.1)",
         }}
       />
-      {/* Very subtle left-side gradient so text stays readable without darkening the photo */}
-      <div
-        className="absolute inset-0"
-        style={{ background: "linear-gradient(to right, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.2) 45%, rgba(255,255,255,0) 70%)" }}
-      />
+      {/* Gradient only on the text side — keeps photo bright on the person's side */}
+      <div className="absolute inset-0" style={{ background: gradientStyle }} />
 
-      {/* Content — left-aligned, dark text like the original */}
+      {/* Full-width content row — text floats to correct side, person stays clear */}
       <div
-        className="relative z-10 flex flex-col justify-center px-8 md:px-16 py-16"
-        style={{ minHeight: "480px", maxWidth: "55%" }}
+        className="relative z-10 flex items-center py-16 px-8 md:px-16"
+        style={{
+          minHeight: "480px",
+          justifyContent: t.textSide === "right" ? "flex-end" : "flex-start",
+        }}
       >
-        {/* Label */}
-        <p
-          className="text-xs uppercase tracking-[0.25em] font-bold mb-4"
-          style={{ fontFamily: "Raleway, sans-serif", color: "#1a3a4a" }}
-        >
-          {t.label}:
-        </p>
+        {/* Text block — max 45% width so it never reaches the person */}
+        <div style={{ maxWidth: "44%", minWidth: "280px" }}>
+          {/* Label */}
+          <p
+            className="text-xs uppercase tracking-[0.25em] font-bold mb-4"
+            style={{ fontFamily: "Raleway, sans-serif", color: "#0d2d3a" }}
+          >
+            {t.label}:
+          </p>
 
-        {/* Quote */}
-        <div
-          style={{
-            opacity: animating ? 0 : 1,
-            transform: animating
-              ? `translateX(${direction === "left" ? "-40px" : "40px"})`
-              : "translateX(0)",
-            transition: "opacity 0.5s ease, transform 0.5s ease",
-          }}
-        >
-          <blockquote
-            className="italic leading-relaxed mb-5"
+          {/* Quote */}
+          <div
             style={{
-              fontFamily: "Raleway, sans-serif",
-              fontSize: "clamp(1rem, 2vw, 1.2rem)",
-              color: "#1a2a35",
-              fontWeight: 500,
+              opacity: animating ? 0 : 1,
+              transform: animating
+                ? `translateX(${direction === "left" ? "-40px" : "40px"})`
+                : "translateX(0)",
+              transition: "opacity 0.5s ease, transform 0.5s ease",
             }}
           >
-            &ldquo;{t.quote}&rdquo;
-          </blockquote>
-          <cite className="not-italic">
-            <span
-              className="block text-sm font-bold"
-              style={{ fontFamily: "Raleway, sans-serif", color: "#1a3a4a" }}
+            <blockquote
+              className="italic leading-relaxed mb-5"
+              style={{
+                fontFamily: "Raleway, sans-serif",
+                fontSize: "clamp(0.95rem, 1.8vw, 1.15rem)",
+                color: "#0d1f2a",
+                fontWeight: 700,
+              }}
             >
-              -{t.author}, {t.role}
-            </span>
-          </cite>
-        </div>
-
-        {/* Dots + arrows */}
-        <div className="flex items-center gap-3 mt-8">
-          <button
-            onClick={prev}
-            className="w-8 h-8 rounded-full border flex items-center justify-center text-sm transition-colors"
-            style={{ borderColor: "rgba(0,0,0,0.3)", color: "rgba(0,0,0,0.5)" }}
-            aria-label="Previous"
-          >
-            &#8592;
-          </button>
-          <div className="flex gap-2">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goTo(i, i > current ? "left" : "right")}
-                className="w-2.5 h-2.5 rounded-full transition-all"
-                style={{ background: i === current ? "#00b4c8" : "rgba(0,0,0,0.25)" }}
-                aria-label={`Go to review ${i + 1}`}
-              />
-            ))}
+              &ldquo;{t.quote}&rdquo;
+            </blockquote>
+            <cite className="not-italic">
+              <span
+                className="block text-sm font-extrabold"
+                style={{ fontFamily: "Raleway, sans-serif", color: "#0d2d3a" }}
+              >
+                -{t.author}, {t.role}
+              </span>
+            </cite>
           </div>
-          <button
-            onClick={next}
-            className="w-8 h-8 rounded-full border flex items-center justify-center text-sm transition-colors"
-            style={{ borderColor: "rgba(0,0,0,0.3)", color: "rgba(0,0,0,0.5)" }}
-            aria-label="Next"
-          >
-            &#8594;
-          </button>
+
+          {/* Dots + arrows */}
+          <div className="flex items-center gap-3 mt-8">
+            <button
+              onClick={prev}
+              className="w-8 h-8 rounded-full border flex items-center justify-center text-sm transition-colors"
+              style={{ borderColor: "rgba(0,0,0,0.35)", color: "rgba(0,0,0,0.55)" }}
+              aria-label="Previous"
+            >
+              &#8592;
+            </button>
+            <div className="flex gap-2">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i, i > current ? "left" : "right")}
+                  className="w-2.5 h-2.5 rounded-full transition-all"
+                  style={{ background: i === current ? "#00b4c8" : "rgba(0,0,0,0.25)" }}
+                  aria-label={`Go to review ${i + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={next}
+              className="w-8 h-8 rounded-full border flex items-center justify-center text-sm transition-colors"
+              style={{ borderColor: "rgba(0,0,0,0.35)", color: "rgba(0,0,0,0.55)" }}
+              aria-label="Next"
+            >
+              &#8594;
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -216,7 +230,7 @@ export default function Home() {
         className="parallax-hero"
         style={{ backgroundImage: `url(${brokerConfig.heroImage})` }}
       >
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.05) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0) 100%)" }} />
         <div className="hero-inner">
           <div className="max-w-2xl">
             <p
