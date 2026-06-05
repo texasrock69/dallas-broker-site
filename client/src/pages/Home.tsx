@@ -95,7 +95,7 @@ function TestimonialCarousel() {
     setTimeout(() => {
       setCurrent(index);
       setAnimating(false);
-    }, 400);
+    }, 500);
   };
 
   const prev = () => goTo((current - 1 + testimonials.length) % testimonials.length, "right");
@@ -109,30 +109,37 @@ function TestimonialCarousel() {
   const t = testimonials[current];
 
   return (
-    <section className="relative overflow-hidden" style={{ minHeight: "420px" }}>
-      {/* Full-bleed background image */}
+    <section
+      className="relative overflow-hidden"
+      style={{ minHeight: "480px" }}
+    >
+      {/* Full-bleed background photo — NO dark overlay, full brightness */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${t.image})`,
           opacity: animating ? 0 : 1,
-          transition: "opacity 0.4s ease",
+          transition: "opacity 0.5s ease",
+          filter: "brightness(1.05)",
         }}
       />
-      {/* Dark overlay */}
-      <div className="absolute inset-0" style={{ background: "rgba(10,10,30,0.62)" }} />
-
-      {/* Content */}
+      {/* Very subtle left-side gradient so text stays readable without darkening the photo */}
       <div
-        className="relative z-10 flex flex-col justify-center px-8 md:px-20 py-16"
-        style={{ minHeight: "420px" }}
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(to right, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.2) 45%, rgba(255,255,255,0) 70%)" }}
+      />
+
+      {/* Content — left-aligned, dark text like the original */}
+      <div
+        className="relative z-10 flex flex-col justify-center px-8 md:px-16 py-16"
+        style={{ minHeight: "480px", maxWidth: "55%" }}
       >
         {/* Label */}
         <p
-          className="text-[#00b4c8] text-xs uppercase tracking-[0.25em] font-semibold mb-4"
-          style={{ fontFamily: "Raleway, sans-serif" }}
+          className="text-xs uppercase tracking-[0.25em] font-bold mb-4"
+          style={{ fontFamily: "Raleway, sans-serif", color: "#1a3a4a" }}
         >
-          {t.label}
+          {t.label}:
         </p>
 
         {/* Quote */}
@@ -140,35 +147,38 @@ function TestimonialCarousel() {
           style={{
             opacity: animating ? 0 : 1,
             transform: animating
-              ? `translateX(${direction === "left" ? "-50px" : "50px"})`
+              ? `translateX(${direction === "left" ? "-40px" : "40px"})`
               : "translateX(0)",
-            transition: "opacity 0.4s ease, transform 0.4s ease",
+            transition: "opacity 0.5s ease, transform 0.5s ease",
           }}
         >
           <blockquote
-            className="text-white italic leading-relaxed mb-5 max-w-2xl"
+            className="italic leading-relaxed mb-5"
             style={{
               fontFamily: "Raleway, sans-serif",
-              fontSize: "clamp(1.05rem, 2.2vw, 1.3rem)",
+              fontSize: "clamp(1rem, 2vw, 1.2rem)",
+              color: "#1a2a35",
+              fontWeight: 500,
             }}
           >
             &ldquo;{t.quote}&rdquo;
           </blockquote>
           <cite className="not-italic">
             <span
-              className="block text-white font-bold text-sm"
-              style={{ fontFamily: "Raleway, sans-serif" }}
+              className="block text-sm font-bold"
+              style={{ fontFamily: "Raleway, sans-serif", color: "#1a3a4a" }}
             >
               -{t.author}, {t.role}
             </span>
           </cite>
         </div>
 
-        {/* Dots + arrows row */}
-        <div className="flex items-center gap-4 mt-8">
+        {/* Dots + arrows */}
+        <div className="flex items-center gap-3 mt-8">
           <button
             onClick={prev}
-            className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white/70 hover:border-white hover:text-white transition-colors text-sm"
+            className="w-8 h-8 rounded-full border flex items-center justify-center text-sm transition-colors"
+            style={{ borderColor: "rgba(0,0,0,0.3)", color: "rgba(0,0,0,0.5)" }}
             aria-label="Previous"
           >
             &#8592;
@@ -178,15 +188,16 @@ function TestimonialCarousel() {
               <button
                 key={i}
                 onClick={() => goTo(i, i > current ? "left" : "right")}
-                className="w-2 h-2 rounded-full transition-all"
-                style={{ background: i === current ? "#00b4c8" : "rgba(255,255,255,0.35)" }}
+                className="w-2.5 h-2.5 rounded-full transition-all"
+                style={{ background: i === current ? "#00b4c8" : "rgba(0,0,0,0.25)" }}
                 aria-label={`Go to review ${i + 1}`}
               />
             ))}
           </div>
           <button
             onClick={next}
-            className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white/70 hover:border-white hover:text-white transition-colors text-sm"
+            className="w-8 h-8 rounded-full border flex items-center justify-center text-sm transition-colors"
+            style={{ borderColor: "rgba(0,0,0,0.3)", color: "rgba(0,0,0,0.5)" }}
             aria-label="Next"
           >
             &#8594;
