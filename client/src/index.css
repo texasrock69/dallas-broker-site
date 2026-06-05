@@ -130,12 +130,31 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .parallax-hero > .hero-inner {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 3.5rem;
   }
 
   @media (max-width: 768px) {
     .parallax-hero {
       background-attachment: scroll;
       height: 450px;
+    }
+    .parallax-hero > .hero-inner {
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 

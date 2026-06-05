@@ -189,47 +189,49 @@ export default function Home() {
     <Layout>
       {/* ── PARALLAX HERO ── */}
       <section
-        className="parallax-hero flex flex-col justify-end"
+        className="parallax-hero"
         style={{ backgroundImage: `url(${brokerConfig.heroImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
-        <div className="relative z-10 px-6 pb-14 max-w-4xl">
-          <p
-            className="text-[#00b4c8] text-xs uppercase tracking-[0.25em] font-semibold mb-3"
-            style={{ fontFamily: "Raleway, sans-serif" }}
-          >
-            {brokerConfig.locationShort} · Business Brokerage
-          </p>
-          <h1
-            className="text-white font-extrabold leading-none mb-4"
-            style={{
-              fontFamily: "Raleway, sans-serif",
-              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Selling Your Business
-            <br />
-            <span style={{ color: "#00b4c8" }}>Is Our Business.</span>
-          </h1>
-          <p className="text-white/80 text-lg mb-8 max-w-xl leading-relaxed">
-            Experience matters. {brokerConfig.companyName} delivers confidential, results-driven
-            representation for business owners ready to sell — and buyers ready to invest.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/sell">
-              <button className="btn-teal-solid px-8 py-3 text-sm">
-                Get Your Free Valuation
-              </button>
-            </Link>
-            <Link href="/online-nda">
-              <button
-                className="px-8 py-3 text-sm font-semibold border-2 border-white/60 text-white hover:border-white hover:bg-white/10 transition-all"
-                style={{ fontFamily: "Raleway, sans-serif", borderRadius: "2px" }}
-              >
-                I'm a Buyer — Start Here
-              </button>
-            </Link>
+        <div className="hero-inner">
+          <div className="max-w-2xl">
+            <p
+              className="text-[#00b4c8] text-xs uppercase tracking-[0.25em] font-semibold mb-3"
+              style={{ fontFamily: "Raleway, sans-serif" }}
+            >
+              {brokerConfig.locationShort} · Business Brokerage
+            </p>
+            <h1
+              className="text-white font-extrabold leading-none mb-4"
+              style={{
+                fontFamily: "Raleway, sans-serif",
+                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Selling Your Business
+              <br />
+              <span style={{ color: "#00b4c8" }}>Is Our Business.</span>
+            </h1>
+            <p className="text-white/80 text-lg mb-8 max-w-xl leading-relaxed">
+              Experience matters. {brokerConfig.companyName} delivers confidential, results-driven
+              representation for business owners ready to sell — and buyers ready to invest.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/sell">
+                <button className="btn-teal-solid px-8 py-3 text-sm">
+                  Get Your Free Valuation
+                </button>
+              </Link>
+              <Link href="/online-nda">
+                <button
+                  className="px-8 py-3 text-sm font-semibold border-2 border-white/60 text-white hover:border-white hover:bg-white/10 transition-all"
+                  style={{ fontFamily: "Raleway, sans-serif", borderRadius: "2px" }}
+                >
+                  I'm a Buyer — Start Here
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
