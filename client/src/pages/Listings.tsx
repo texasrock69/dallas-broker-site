@@ -54,7 +54,7 @@ export default function Listings() {
           </h1>
           <p className="text-gray-400 max-w-xl leading-relaxed">
             Browse our available businesses for sale across {brokerConfig.locationShort} and
-            nationwide. When you find one that interests you, complete our free Online NDA to
+            nationwide. When you find one that interests you, complete our Online NDA to
             receive confidential details.
           </p>
         </div>
@@ -64,12 +64,11 @@ export default function Listings() {
       <div className="bg-[#00b4c8]/10 border-b border-[#00b4c8]/20 py-4 px-4">
         <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <p className="text-gray-700 text-sm">
-            <strong>25+ listings nationwide</strong> — see something you like? Complete our free
-            NDA to unlock confidential details, financials, and seller information.
+            <strong>25+ listings nationwide</strong> — see something you like? Complete our Online NDA to unlock confidential details, financials, and seller information.
           </p>
           <Link href="/online-nda">
             <button className="btn-teal-solid text-xs px-5 py-2 whitespace-nowrap">
-              Complete Free NDA
+              Complete Online NDA
             </button>
           </Link>
         </div>
@@ -102,9 +101,9 @@ export default function Listings() {
             Interested in a Listing?
           </h2>
           <p className="text-gray-600 mb-6 leading-relaxed">
-            Complete our free, confidential Online NDA to receive full details — including
+            Complete our Online NDA to receive full details — including
             financials, business name, and seller information — on any listing that interests you.
-            No obligation, no cost, takes about 3 minutes.
+            No obligation, takes about 3 minutes.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/online-nda">

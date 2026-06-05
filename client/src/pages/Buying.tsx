@@ -6,7 +6,7 @@ const buyerSteps = [
   {
     step: "01",
     title: "Complete the NDA",
-    desc: "A quick, free Non-Disclosure Agreement is required to receive confidential business details. No obligation — just a standard confidentiality protection for the seller.",
+    desc: "An Online Non-Disclosure Agreement is required to receive confidential business details. No obligation — just a standard confidentiality protection for the seller.",
   },
   {
     step: "02",

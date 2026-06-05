@@ -40,7 +40,7 @@ export const brokerConfig = {
   becomeBrokerUrl: "http://www.bizbrokersuccess.com",
 
   // Copyright year
-  copyrightYear: "2025",
+  copyrightYear: "2026",
 
   // Stats shown in the teal bar on homepage
   stats: [
