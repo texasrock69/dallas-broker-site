@@ -9,18 +9,24 @@ const testimonials = [
       "The service we received from Toby @ ProPlus Business Alliance definitely exceeded any expectations. I would highly recommend Toby & ProPlus to any business owner who is entertaining their options or just curious about the value of their business. Our business sold in five months and for pretty close to the estimated value from our initial visit.",
     author: "Joey G.",
     role: "Former Business Owner",
+    label: "Another Testimonial",
+    image: "/manus-storage/testimonial_joey_778975a2.jpg",
   },
   {
     quote:
-      "Toby was professional, knowledgeable, and kept everything completely confidential throughout the entire process. He found us a qualified buyer quickly and guided us through every step of the closing. I couldn't have asked for a better experience selling my business.",
-    author: "Sandra M.",
-    role: "Former Restaurant Owner, Dallas",
+      "I was looking to retire after thirty years, and gave myself a timeline that if my business didn't sell I was simply going to shut down. Toby and ProPlus Business Alliance was able to market and sell my business in less than three months! I couldn't be more satisfied with the professionalism that was displayed. Selling a business can be very emotional and Toby handled the transaction with white glove service from start to finish.",
+    author: "Ann G.",
+    role: "Former Business Owner",
+    label: "Former Business Owner",
+    image: "/manus-storage/testimonial_ann_0756a48f.jpg",
   },
   {
     quote:
-      "As a first-time business buyer, I had a lot of questions and concerns. Toby took the time to walk me through everything — from the NDA to due diligence to financing. He was always available and genuinely had my best interests in mind. I'm now the proud owner of a thriving business.",
-    author: "Marcus T.",
-    role: "Business Buyer, Fort Worth",
+      "Working with ProPlus Business Alliance made our business buying experience very enjoyable! Toby was able to consult with us on the process every step of the way. We were looking for a small business we could grow and build a legacy business for our family — we found just that and are now enjoying being small business owners.",
+    author: "Richard and Darby P.",
+    role: "Business Owners",
+    label: "What People Say",
+    image: "/manus-storage/testimonial_richard_d500dfa6.jpg",
   },
 ];
 
@@ -89,95 +95,102 @@ function TestimonialCarousel() {
     setTimeout(() => {
       setCurrent(index);
       setAnimating(false);
-    }, 350);
+    }, 400);
   };
 
   const prev = () => goTo((current - 1 + testimonials.length) % testimonials.length, "right");
   const next = () => goTo((current + 1) % testimonials.length, "left");
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setDirection("left");
-      setAnimating(true);
-      setTimeout(() => {
-        setCurrent((c) => (c + 1) % testimonials.length);
-        setAnimating(false);
-      }, 350);
-    }, 6000);
+    const timer = setInterval(() => next(), 7000);
     return () => clearInterval(timer);
-  }, []);
+  }, [current]);
 
   const t = testimonials[current];
 
   return (
-    <section className="py-16 bg-gray-50 border-y border-gray-200 overflow-hidden">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <p
-            className="text-[#00b4c8] text-xs uppercase tracking-[0.2em] font-semibold"
-            style={{ fontFamily: "Raleway, sans-serif" }}
+    <section className="relative overflow-hidden" style={{ minHeight: "420px" }}>
+      {/* Full-bleed background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${t.image})`,
+          opacity: animating ? 0 : 1,
+          transition: "opacity 0.4s ease",
+        }}
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0" style={{ background: "rgba(10,10,30,0.62)" }} />
+
+      {/* Content */}
+      <div
+        className="relative z-10 flex flex-col justify-center px-8 md:px-20 py-16"
+        style={{ minHeight: "420px" }}
+      >
+        {/* Label */}
+        <p
+          className="text-[#00b4c8] text-xs uppercase tracking-[0.25em] font-semibold mb-4"
+          style={{ fontFamily: "Raleway, sans-serif" }}
+        >
+          {t.label}
+        </p>
+
+        {/* Quote */}
+        <div
+          style={{
+            opacity: animating ? 0 : 1,
+            transform: animating
+              ? `translateX(${direction === "left" ? "-50px" : "50px"})`
+              : "translateX(0)",
+            transition: "opacity 0.4s ease, transform 0.4s ease",
+          }}
+        >
+          <blockquote
+            className="text-white italic leading-relaxed mb-5 max-w-2xl"
+            style={{
+              fontFamily: "Raleway, sans-serif",
+              fontSize: "clamp(1.05rem, 2.2vw, 1.3rem)",
+            }}
           >
-            What Our Clients Say
-          </p>
+            &ldquo;{t.quote}&rdquo;
+          </blockquote>
+          <cite className="not-italic">
+            <span
+              className="block text-white font-bold text-sm"
+              style={{ fontFamily: "Raleway, sans-serif" }}
+            >
+              -{t.author}, {t.role}
+            </span>
+          </cite>
         </div>
 
-        <div className="relative flex items-center gap-4">
-          {/* Prev button */}
+        {/* Dots + arrows row */}
+        <div className="flex items-center gap-4 mt-8">
           <button
             onClick={prev}
-            className="flex-shrink-0 w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-400 hover:border-[#00b4c8] hover:text-[#00b4c8] transition-colors"
+            className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white/70 hover:border-white hover:text-white transition-colors text-sm"
             aria-label="Previous"
           >
             &#8592;
           </button>
-
-          {/* Card */}
-          <div
-            className="flex-1 text-center px-4"
-            style={{
-              opacity: animating ? 0 : 1,
-              transform: animating
-                ? `translateX(${direction === "left" ? "-40px" : "40px"})`
-                : "translateX(0)",
-              transition: "opacity 0.35s ease, transform 0.35s ease",
-            }}
-          >
-            <div className="text-[#00b4c8] text-4xl leading-none mb-4">&ldquo;</div>
-            <blockquote
-              className="text-gray-700 text-lg leading-relaxed font-medium italic mb-5 max-w-2xl mx-auto"
-              style={{ fontFamily: "Raleway, sans-serif" }}
-            >
-              {t.quote}
-            </blockquote>
-            <cite className="not-italic">
-              <span className="block font-bold text-gray-800 text-sm" style={{ fontFamily: "Raleway, sans-serif" }}>
-                {t.author}
-              </span>
-              <span className="text-gray-400 text-xs uppercase tracking-widest">{t.role}</span>
-            </cite>
+          <div className="flex gap-2">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i, i > current ? "left" : "right")}
+                className="w-2 h-2 rounded-full transition-all"
+                style={{ background: i === current ? "#00b4c8" : "rgba(255,255,255,0.35)" }}
+                aria-label={`Go to review ${i + 1}`}
+              />
+            ))}
           </div>
-
-          {/* Next button */}
           <button
             onClick={next}
-            className="flex-shrink-0 w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-400 hover:border-[#00b4c8] hover:text-[#00b4c8] transition-colors"
+            className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white/70 hover:border-white hover:text-white transition-colors text-sm"
             aria-label="Next"
           >
             &#8594;
           </button>
-        </div>
-
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i, i > current ? "left" : "right")}
-              className="w-2 h-2 rounded-full transition-all"
-              style={{ background: i === current ? "#00b4c8" : "#d1d5db" }}
-              aria-label={`Go to review ${i + 1}`}
-            />
-          ))}
         </div>
       </div>
     </section>
