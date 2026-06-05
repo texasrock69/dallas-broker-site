@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 import { useEffect, useRef, useState } from "react";
 
 // Web3Forms access key - user needs to register at web3forms.com (free) and replace this
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_KEY_HERE";
+const WEB3FORMS_ACCESS_KEY = "f02028ed-7d76-42d5-ad5c-369b700f2d45";
 
 export default function OnlineNDA() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
