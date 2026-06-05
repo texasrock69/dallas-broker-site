@@ -27,7 +27,7 @@ export const brokerConfig = {
   heroImage: "/manus-storage/dallas_skyline_219c50ee.jpg",
 
   // Broker headshot (optional - leave empty string to hide)
-  brokerPhoto: "/manus-storage/broker_photo_0fe82f75.jpg",
+  brokerPhoto: "/manus-storage/toby_headshot_6eb5af2d.jpeg",
 
   // Testimonial (optional)
   testimonial: {
