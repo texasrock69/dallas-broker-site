@@ -238,11 +238,11 @@ ${NDA_LEGAL_TEXT}
           >
             NDA Submitted Successfully
           </h2>
-          <p className="text-gray-600 mb-2">
+          <p className="text-gray-500 mb-2">
             Thank you, <strong>{form.fullName}</strong>. Your Non-Disclosure Agreement has been
             received by <strong>{brokerConfig.brokerName}</strong>.
           </p>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-500 mb-6">
             We will reach out to you shortly to discuss your interest in buying a business. Because
             of confidentiality, we will <strong>NOT</strong> leave a message if we do not reach you
             directly, unless you indicated otherwise.
@@ -295,7 +295,7 @@ ${NDA_LEGAL_TEXT}
             </div>
             <div className="text-gray-500 text-sm">{brokerConfig.parentCompany}</div>
           </div>
-          <div className="text-sm text-gray-600 text-right">
+          <div className="text-sm text-gray-500 text-right">
             <div className="font-semibold text-gray-800">{brokerConfig.brokerName}</div>
             <div className="text-gray-500 text-xs">{brokerConfig.brokerTitle}</div>
             <a href={`tel:${brokerConfig.brokerPhone}`} className="text-[#00b4c8] hover:underline block">{brokerConfig.brokerPhoneDisplay}</a>
@@ -305,14 +305,14 @@ ${NDA_LEGAL_TEXT}
 
         <div className="w-12 h-1 bg-[#00b4c8] mb-8" />
 
-        <p className="text-gray-600 leading-relaxed mb-4">
+        <p className="text-gray-500 leading-relaxed mb-4">
           A Non-Disclosure is required to learn about our businesses for sale. Our contract with our
           business seller clients requires that we collect simple buyer qualification data and a
           Non-Disclosure. ALL business buyer information is kept strictly confidential and used
           solely by our company for the purpose of buyer-related communication as well as
           qualification and non-disclosure purposes.
         </p>
-        <p className="text-gray-600 leading-relaxed mb-8">
+        <p className="text-gray-500 leading-relaxed mb-8">
           Once you complete the quick process below, {brokerConfig.brokerName} will reach out to
           discuss your interest in buying a business and/or provide full disclosure on your business
           of interest. There is <strong>NO obligation</strong> by completing the online NDA below.
@@ -338,40 +338,40 @@ ${NDA_LEGAL_TEXT}
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-gray-600 mb-1">
                 Full Name <span className="text-red-500">*</span>
               </label>
               <input type="text" name="fullName" required value={form.fullName} onChange={handleChange} className="form-input" placeholder="Your full legal name" />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-gray-600 mb-1">
                 Email Address <span className="text-red-500">*</span>
               </label>
               <input type="email" name="email" required value={form.email} onChange={handleChange} className="form-input" placeholder="your@email.com" />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-gray-600 mb-1">
                 Phone Number <span className="text-red-500">*</span>
               </label>
               <input type="tel" name="phone" required value={form.phone} onChange={handleChange} className="form-input" placeholder="(555) 555-5555" />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Street Address</label>
+              <label className="block text-sm font-semibold text-gray-600 mb-1">Street Address</label>
               <input type="text" name="address" value={form.address} onChange={handleChange} className="form-input" placeholder="123 Main Street" />
             </div>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="col-span-2">
-              <label className="block text-sm font-semibold text-gray-700 mb-1">City</label>
+              <label className="block text-sm font-semibold text-gray-600 mb-1">City</label>
               <input type="text" name="city" value={form.city} onChange={handleChange} className="form-input" placeholder="City" />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">State</label>
+              <label className="block text-sm font-semibold text-gray-600 mb-1">State</label>
               <input type="text" name="state" value={form.state} onChange={handleChange} className="form-input" placeholder="TX" maxLength={2} />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">ZIP</label>
+              <label className="block text-sm font-semibold text-gray-600 mb-1">ZIP</label>
               <input type="text" name="zip" value={form.zip} onChange={handleChange} className="form-input" placeholder="75201" />
             </div>
           </div>
@@ -383,13 +383,13 @@ ${NDA_LEGAL_TEXT}
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-gray-600 mb-1">
                 Current Occupation <span className="text-red-500">*</span>
               </label>
               <input type="text" name="occupation" required value={form.occupation} onChange={handleChange} className="form-input" placeholder="Your current job or industry" />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-gray-600 mb-1">
                 Funds Available <span className="text-red-500">*</span>
               </label>
               <select name="fundsAvailable" required value={form.fundsAvailable} onChange={handleChange} className="form-input">
@@ -403,7 +403,7 @@ ${NDA_LEGAL_TEXT}
               </select>
             </div>
             <div className="md:col-span-2">
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-gray-600 mb-1">
                 Credit Score <span className="text-red-500">*</span>
               </label>
               <select name="creditScore" required value={form.creditScore} onChange={handleChange} className="form-input">
@@ -418,7 +418,7 @@ ${NDA_LEGAL_TEXT}
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-600 mb-1">
               About You — Brief Resume of Last 10 Years Work Experience <span className="text-red-500">*</span>
             </label>
             <textarea
@@ -438,7 +438,7 @@ ${NDA_LEGAL_TEXT}
           </h3>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-600 mb-1">
               Listing of Interest — If you do not have a specific business in mind, please put N/A <span className="text-red-500">*</span>
             </label>
             <input
@@ -458,7 +458,7 @@ ${NDA_LEGAL_TEXT}
               Non-Disclosure Agreement
             </h3>
             <div
-              className="bg-gray-50 border border-gray-300 rounded p-5 text-xs text-gray-700 leading-relaxed space-y-3"
+              className="bg-gray-50 border border-gray-300 rounded p-5 text-xs text-gray-600 leading-relaxed space-y-3"
               style={{ maxHeight: "320px", overflowY: "auto", fontFamily: "Georgia, serif" }}
             >
               <p className="font-bold text-sm text-gray-900 uppercase tracking-wide">
@@ -534,7 +534,7 @@ ${NDA_LEGAL_TEXT}
 
           {/* ── Signature Pad ── */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-600 mb-1">
               Electronic Signature <span className="text-red-500">*</span>
             </label>
             <p className="text-xs text-gray-500 mb-2">
@@ -575,7 +575,7 @@ ${NDA_LEGAL_TEXT}
               onChange={handleChange}
               className="mt-1 w-4 h-4 accent-[#00b4c8] flex-shrink-0"
             />
-            <label htmlFor="agreeToNDA" className="text-sm text-gray-700 leading-relaxed">
+            <label htmlFor="agreeToNDA" className="text-sm text-gray-600 leading-relaxed">
               I have read, understand, and agree to the Non-Disclosure Agreement above in its
               entirety. I understand that my electronic signature and this checkbox constitute my
               full legal agreement to the terms of this NDA, and that these terms are{" "}

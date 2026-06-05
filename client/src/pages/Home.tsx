@@ -205,12 +205,12 @@ export default function Home() {
         className="parallax-hero"
         style={{ backgroundImage: `url(${brokerConfig.heroImage})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.05) 100%)" }} />
         <div className="hero-inner">
           <div className="max-w-2xl">
             <p
-              className="text-[#00b4c8] text-xs uppercase tracking-[0.25em] font-semibold mb-3"
-              style={{ fontFamily: "Raleway, sans-serif" }}
+              className="uppercase tracking-[0.25em] font-bold mb-3"
+              style={{ fontFamily: "Raleway, sans-serif", fontSize: "0.85rem", color: "#4dd9ec", textShadow: "0 1px 6px rgba(0,0,0,0.7)" }}
             >
               {brokerConfig.locationShort} · Business Brokerage
             </p>
@@ -226,7 +226,7 @@ export default function Home() {
               <br />
               <span style={{ color: "#00b4c8" }}>Is Our Business.</span>
             </h1>
-            <p className="text-white/80 text-lg mb-8 max-w-xl leading-relaxed">
+            <p className="text-white text-xl mb-8 max-w-xl leading-relaxed font-medium" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}>
               Experience matters. {brokerConfig.companyName} delivers confidential, results-driven
               representation for business owners ready to sell — and buyers ready to invest.
             </p>
@@ -294,7 +294,7 @@ export default function Home() {
                   "Access to 6,000+ pre-qualified buyers",
                   "Full confidentiality throughout the process",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
+                  <li key={item} className="flex items-start gap-2 text-sm text-gray-500">
                     <span className="text-[#00b4c8] mt-0.5 font-bold">✓</span>
                     {item}
                   </li>
@@ -332,7 +332,7 @@ export default function Home() {
                   "Guidance from search through closing",
                   "Financing resources available",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
+                  <li key={item} className="flex items-start gap-2 text-sm text-gray-500">
                     <span className="text-[#00b4c8] mt-0.5 font-bold">✓</span>
                     {item}
                   </li>
@@ -514,7 +514,7 @@ export default function Home() {
               </button>
             </Link>
           </div>
-          <p className="text-gray-600 text-xs mt-6">
+          <p className="text-gray-500 text-xs mt-6">
             Or call directly:{" "}
             <a
               href={`tel:${brokerConfig.brokerPhone}`}

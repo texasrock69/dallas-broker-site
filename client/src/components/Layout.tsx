@@ -179,7 +179,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="flex-1">{children}</main>
 
       {/* Footer */}
-      <footer className="site-header text-gray-400 pt-12 pb-6">
+      <footer className="site-header pt-12 pb-6">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             {/* Brand */}
@@ -190,8 +190,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               >
                 {brokerConfig.companyName}
               </div>
-              <div className="text-xs text-gray-500 mb-4">{brokerConfig.companySubtitle}</div>
-              <p className="text-xs text-gray-600 leading-relaxed">
+              <div className="text-xs text-gray-300 mb-4">{brokerConfig.companySubtitle}</div>
+              <p className="text-xs text-gray-300 leading-relaxed">
                 Professional business brokerage services for buyers and sellers in {brokerConfig.locationShort} and beyond.
               </p>
             </div>
@@ -201,7 +201,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="text-white text-sm font-bold mb-3" style={{ fontFamily: "Raleway, sans-serif" }}>For Sellers</div>
               <div className="space-y-2">
                 {[{ label: "Free Valuation", href: "/sell" }, { label: "Selling Overview", href: "/selling" }, { label: "Seller's Guide", href: "/selling-tutorial" }].map(l => (
-                  <Link key={l.href} href={l.href} className="block text-xs text-gray-500 hover:text-[#00b4c8] transition-colors">{l.label}</Link>
+                  <Link key={l.href} href={l.href} className="block text-xs text-gray-300 hover:text-[#00b4c8] transition-colors">{l.label}</Link>
                 ))}
               </div>
             </div>
@@ -211,7 +211,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="text-white text-sm font-bold mb-3" style={{ fontFamily: "Raleway, sans-serif" }}>For Buyers</div>
               <div className="space-y-2">
                 {[{ label: "Online NDA", href: "/online-nda" }, { label: "Buying Overview", href: "/buy" }, { label: "Buyer's Guide", href: "/buying-tutorial" }, { label: "Business Listings", href: "/listings" }].map(l => (
-                  <Link key={l.href} href={l.href} className="block text-xs text-gray-500 hover:text-[#00b4c8] transition-colors">{l.label}</Link>
+                  <Link key={l.href} href={l.href} className="block text-xs text-gray-300 hover:text-[#00b4c8] transition-colors">{l.label}</Link>
                 ))}
               </div>
             </div>
@@ -220,19 +220,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <div className="text-white text-sm font-bold mb-3" style={{ fontFamily: "Raleway, sans-serif" }}>Contact</div>
               <div className="space-y-2 text-xs">
-                <div className="text-gray-400 font-semibold">{brokerConfig.brokerName}</div>
-                <div className="text-gray-500">{brokerConfig.brokerTitle}</div>
+                <div className="text-white font-semibold">{brokerConfig.brokerName}</div>
+                <div className="text-gray-300">{brokerConfig.brokerTitle}</div>
                 <a href={`tel:${brokerConfig.brokerPhone}`} className="block text-[#00b4c8] hover:underline font-semibold">{brokerConfig.brokerPhoneDisplay}</a>
-                <a href={`mailto:${brokerConfig.brokerEmail}`} className="block text-gray-500 hover:text-[#00b4c8] transition-colors break-all">{brokerConfig.brokerEmail}</a>
+                <a href={`mailto:${brokerConfig.brokerEmail}`} className="block text-gray-300 hover:text-[#00b4c8] transition-colors break-all">{brokerConfig.brokerEmail}</a>
               </div>
             </div>
           </div>
 
           <div className="border-t border-gray-800 pt-5 flex flex-col md:flex-row items-center justify-between gap-2">
-            <div className="text-xs text-gray-600">
+            <div className="text-xs text-gray-300">
               &copy; {brokerConfig.copyrightYear} {brokerConfig.parentCompany}. All rights reserved.
             </div>
-            <div className="text-xs text-gray-700">
+            <div className="text-xs text-gray-300">
               Business Brokerage Services &middot; {brokerConfig.locationShort}
             </div>
           </div>

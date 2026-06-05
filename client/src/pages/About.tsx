@@ -57,19 +57,19 @@ export default function About() {
               A Different Kind of Business Broker
             </h2>
             <div className="w-10 h-1 bg-[#00b4c8] mb-6" />
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-gray-500 leading-relaxed mb-4">
               {brokerConfig.companyName}, affiliated with Business Broker Development Group, LLC,
               was built on a simple but powerful belief: selling a business is one of the most
               significant decisions a person will ever make — and it deserves more than a listing
               on a website.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-gray-500 leading-relaxed mb-4">
               We provide comprehensive advisory and brokerage services to business owners and
               buyers across {brokerConfig.locationShort} and beyond. Whether you are ready to sell
               today or simply exploring your options, we offer a free, confidential consultation
               with no obligation.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-8">
+            <p className="text-gray-500 leading-relaxed mb-8">
               Our approach is personal, systematic, and results-driven. We don't just find buyers —
               we find the <em>right</em> buyers, negotiate the best terms, and guide every
               transaction from first conversation to final closing.
@@ -104,20 +104,20 @@ export default function About() {
               <div className="border-t border-gray-200 pt-4 space-y-2">
                 <a
                   href={`tel:${brokerConfig.brokerPhone}`}
-                  className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#00b4c8] transition-colors"
+                  className="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00b4c8] transition-colors"
                 >
                   <span>📞</span> {brokerConfig.brokerPhoneDisplay}
                 </a>
                 <a
                   href={`mailto:${brokerConfig.brokerEmail}`}
-                  className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#00b4c8] transition-colors"
+                  className="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00b4c8] transition-colors"
                 >
                   <span>✉️</span> {brokerConfig.brokerEmail}
                 </a>
                 {brokerConfig.brokerEmail2 && (
                   <a
                     href={`mailto:${brokerConfig.brokerEmail2}`}
-                    className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#00b4c8] transition-colors"
+                    className="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00b4c8] transition-colors"
                   >
                     <span>✉️</span> {brokerConfig.brokerEmail2}
                   </a>
@@ -128,7 +128,7 @@ export default function About() {
             {/* Testimonial */}
             {brokerConfig.testimonial && (
               <div className="bg-white border-l-4 border-[#00b4c8] p-5 shadow-sm">
-                <p className="text-gray-600 italic text-sm leading-relaxed mb-3">
+                <p className="text-gray-500 italic text-sm leading-relaxed mb-3">
                   "{brokerConfig.testimonial.quote}"
                 </p>
                 <cite className="text-xs font-bold text-gray-500 not-italic uppercase tracking-widest">
@@ -211,7 +211,7 @@ export default function About() {
                 >
                   {s.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed text-sm mb-3">{s.body}</p>
+                <p className="text-gray-500 leading-relaxed text-sm mb-3">{s.body}</p>
                 <Link href={s.cta.href}>
                   <button className="btn-teal text-xs">{s.cta.label}</button>
                 </Link>

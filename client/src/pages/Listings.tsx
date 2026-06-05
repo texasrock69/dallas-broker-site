@@ -63,7 +63,7 @@ export default function Listings() {
       {/* Intro strip */}
       <div className="bg-[#00b4c8]/10 border-b border-[#00b4c8]/20 py-4 px-4">
         <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          <p className="text-gray-700 text-sm">
+          <p className="text-gray-600 text-sm">
             <strong>25+ listings nationwide</strong> — see something you like? Complete our Online NDA to unlock confidential details, financials, and seller information.
           </p>
           <Link href="/online-nda">
@@ -100,7 +100,7 @@ export default function Listings() {
           >
             Interested in a Listing?
           </h2>
-          <p className="text-gray-600 mb-6 leading-relaxed">
+          <p className="text-gray-500 mb-6 leading-relaxed">
             Complete our Online NDA to receive full details — including
             financials, business name, and seller information — on any listing that interests you.
             No obligation, takes about 3 minutes.
@@ -111,7 +111,7 @@ export default function Listings() {
             </Link>
             <a
               href={`tel:${brokerConfig.brokerPhone}`}
-              className="px-8 py-3 text-sm font-semibold border-2 border-gray-300 text-gray-700 hover:border-[#00b4c8] hover:text-[#00b4c8] transition-all"
+              className="px-8 py-3 text-sm font-semibold border-2 border-gray-300 text-gray-600 hover:border-[#00b4c8] hover:text-[#00b4c8] transition-all"
               style={{ fontFamily: "Raleway, sans-serif", borderRadius: "2px" }}
             >
               Call {brokerConfig.brokerPhoneDisplay}

@@ -61,17 +61,17 @@ export default function Selling() {
               Is Now the Right Time to Sell?
             </h2>
             <div className="w-10 h-1 bg-[#00b4c8] mb-6" />
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-gray-500 leading-relaxed mb-4">
               Selling your business is one of the most significant financial decisions you'll ever
               make. The difference between a good outcome and a great one often comes down to
               timing, preparation, and the quality of your representation.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-gray-500 leading-relaxed mb-4">
               At {brokerConfig.companyName}, we start every seller relationship with a free,
               confidential business valuation — so you know exactly where you stand before making
               any decisions. There's no pressure, no obligation, and no cost.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-8">
+            <p className="text-gray-500 leading-relaxed mb-8">
               When you're ready to move forward, our 100% performance-based model means we only
               get paid when you do. Your success is our success.
             </p>

@@ -152,7 +152,7 @@ export default function SellingTutorial() {
       <div className="max-w-4xl mx-auto px-4 py-16">
         <div className="flex flex-wrap gap-4 mb-12 p-5 bg-[#e0f7fa] border border-[#00b4c8] rounded">
           <div className="flex-1 min-w-48">
-            <p className="text-gray-700 text-sm leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed">
               This guide covers the most important topics for business sellers. Read through at
               your own pace, or jump to the sections most relevant to your situation.
             </p>
@@ -198,14 +198,14 @@ export default function SellingTutorial() {
 
               {openIndex === i && (
                 <div className="px-6 pb-6 border-t border-gray-100">
-                  <div className="pt-4 text-gray-600 leading-relaxed text-sm whitespace-pre-line">
+                  <div className="pt-4 text-gray-500 leading-relaxed text-sm whitespace-pre-line">
                     {section.content}
                   </div>
 
                   {section.list && (
                     <ul className="mt-4 space-y-2">
                       {section.list.map((item, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-gray-600">
+                        <li key={j} className="flex items-start gap-2 text-sm text-gray-500">
                           <span className="text-[#00b4c8] font-bold mt-0.5 flex-shrink-0">→</span>
                           {item}
                         </li>
@@ -218,7 +218,7 @@ export default function SellingTutorial() {
                       <span className="font-bold text-[#00b4c8] text-xs uppercase tracking-wide">
                         Key Insight:{" "}
                       </span>
-                      <span className="text-gray-700 text-sm">{section.tip}</span>
+                      <span className="text-gray-600 text-sm">{section.tip}</span>
                     </div>
                   )}
                 </div>

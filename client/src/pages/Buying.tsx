@@ -68,17 +68,17 @@ export default function Buying() {
               Why Buy an Existing Business?
             </h2>
             <div className="w-10 h-1 bg-[#00b4c8] mb-6" />
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-gray-500 leading-relaxed mb-4">
               Starting a business from scratch is risky. Buying an existing one means you inherit
               an established customer base, proven cash flow, trained employees, and an operating
               history you can evaluate before you invest.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-gray-500 leading-relaxed mb-4">
               The challenge is finding the right business — one that fits your skills, budget,
               and lifestyle goals. That's exactly what we do. {brokerConfig.companyName} matches
               serious buyers with qualified sellers across {brokerConfig.locationShort} and beyond.
             </p>
-            <p className="text-gray-600 leading-relaxed mb-8">
+            <p className="text-gray-500 leading-relaxed mb-8">
               Our buyer consultations are completely free. We work with buyers at every investment
               level and help navigate the entire process from search to closing.
             </p>
