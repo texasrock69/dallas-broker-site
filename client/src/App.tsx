@@ -26,8 +26,8 @@ import BuyingTutorial from "./pages/BuyingTutorial";
 import Listings from "./pages/Listings";
 import OnlineNDA from "./pages/OnlineNDA";
 import BecomeBroker from "./pages/BecomeBroker";
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path="/" component={Home} />

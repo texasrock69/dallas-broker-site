@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import { useEffect, useRef, useState } from "react";
 
 const WEB3FORMS_ACCESS_KEY = "f02028ed-7d76-42d5-ad5c-369b700f2d45";
+const BROKER_EMAIL = "toby@dallasbizbuysell.com";
 
 const NDA_LEGAL_TEXT = `ONLINE NON-DISCLOSURE TERMS ARE NOT NEGOTIABLE. BY SIGNING BELOW, YOU ARE AGREEING TO THE FOLLOWING NON-DISCLOSURE AGREEMENT IN ITS ENTIRETY.
 
@@ -140,9 +141,6 @@ export default function OnlineNDA() {
 
     setSubmitting(true);
     try {
-      // Capture signature as base64 PNG image
-      const signatureDataUrl = canvasRef.current?.toDataURL("image/png") || "";
-
       const submittedAt = new Date().toLocaleString("en-US", {
         weekday: "long",
         year: "numeric",
@@ -153,87 +151,69 @@ export default function OnlineNDA() {
         timeZoneName: "short",
       });
 
-      const ndaTextHtml = NDA_LEGAL_TEXT
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/\n/g, "<br>");
+      const separator = "================================================================";
+      const divider   = "----------------------------------------------------------------";
 
-      const plainTextMessage = `NDA Submission — ${form.fullName} | ${submittedAt}`;
-
-      const htmlMessage = `<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<style>
-  body { margin: 0; padding: 0; background: #f4f4f4; font-family: 'Times New Roman', Times, serif; }
-  .page { max-width: 720px; margin: 24px auto; background: #ffffff; border: 1px solid #ccc; padding: 48px 56px; color: #111; font-size: 13px; line-height: 1.7; }
-  .doc-title { text-align: center; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #111; padding-bottom: 12px; margin-bottom: 20px; }
-  .meta { text-align: center; font-size: 12px; color: #444; margin-bottom: 28px; }
-  .section-heading { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid #999; padding-bottom: 4px; margin: 28px 0 12px 0; }
-  .field-row { display: flex; margin-bottom: 6px; }
-  .field-label { width: 220px; min-width: 220px; font-weight: bold; color: #333; }
-  .field-value { flex: 1; }
-  .nda-text { font-size: 11.5px; line-height: 1.75; color: #222; margin-top: 8px; }
-  .sig-area { margin-top: 12px; border: 1px solid #aaa; padding: 10px 14px; display: inline-block; background: #fafafa; }
-  .sig-label { font-size: 11px; color: #555; margin-bottom: 6px; }
-  .footer-note { margin-top: 32px; border-top: 1px solid #ccc; padding-top: 12px; font-size: 11px; color: #555; text-align: center; font-style: italic; }
-</style>
-</head>
-<body>
-<div class="page">
-
-  <div class="doc-title">Online Non-Disclosure Agreement<br>Completed Submission</div>
-  <div class="meta">
-    <strong>${brokerConfig.brokerName}</strong> &nbsp;&bull;&nbsp; ${brokerConfig.companyName}<br>
-    Submitted: ${submittedAt}
-  </div>
-
-  <div class="section-heading">Section 1 &mdash; Buyer Contact Information</div>
-  <div class="field-row"><span class="field-label">Full Name:</span><span class="field-value">${form.fullName}</span></div>
-  <div class="field-row"><span class="field-label">Email Address:</span><span class="field-value">${form.email}</span></div>
-  <div class="field-row"><span class="field-label">Phone Number:</span><span class="field-value">${form.phone}</span></div>
-  <div class="field-row"><span class="field-label">Street Address:</span><span class="field-value">${form.address}</span></div>
-  <div class="field-row"><span class="field-label">City:</span><span class="field-value">${form.city}</span></div>
-  <div class="field-row"><span class="field-label">State:</span><span class="field-value">${form.state}</span></div>
-  <div class="field-row"><span class="field-label">ZIP Code:</span><span class="field-value">${form.zip}</span></div>
-
-  <div class="section-heading">Section 2 &mdash; Buyer Qualification</div>
-  <div class="field-row"><span class="field-label">Current Occupation:</span><span class="field-value">${form.occupation || "Not provided"}</span></div>
-  <div class="field-row"><span class="field-label">Funds Available:</span><span class="field-value">${form.fundsAvailable || "Not provided"}</span></div>
-  <div class="field-row"><span class="field-label">Credit Score Range:</span><span class="field-value">${form.creditScore || "Not provided"}</span></div>
-  <div class="field-row"><span class="field-label">Work History (10 yrs):</span><span class="field-value">${form.workHistory || "Not provided"}</span></div>
-
-  <div class="section-heading">Section 3 &mdash; Business of Interest</div>
-  <div class="field-row"><span class="field-label">Listing / Business:</span><span class="field-value">${form.listingOfInterest || "Not specified"}</span></div>
-
-  <div class="section-heading">Section 4 &mdash; Non-Disclosure Agreement Text</div>
-  <div class="nda-text">${ndaTextHtml}</div>
-
-  <div class="section-heading">Section 5 &mdash; Electronic Signature</div>
-  <div class="field-row"><span class="field-label">Agreed to NDA Terms:</span><span class="field-value">YES &mdash; Checkbox confirmed</span></div>
-  <div class="field-row"><span class="field-label">Agreement Timestamp:</span><span class="field-value">${submittedAt}</span></div>
-  <div style="margin-top: 14px;">
-    <div style="font-weight: bold; margin-bottom: 6px;">Buyer Signature:</div>
-    <div class="sig-area">
-      <div class="sig-label">Electronically signed by ${form.fullName}</div>
-      <img src="${signatureDataUrl}" width="380" height="110" alt="Buyer Signature" style="display:block;" />
-    </div>
-  </div>
-
-  <div class="footer-note">This submission constitutes a legally binding electronic signature under the Electronic Signatures in Global and National Commerce Act (E-SIGN Act), 15 U.S.C. &sect; 7001 et seq.</div>
-
-</div>
-</body>
-</html>`.trim();
+      const plainTextMessage = [
+        separator,
+        `  NDA SUBMISSION — ${form.fullName.toUpperCase()}`,
+        separator,
+        "",
+        `BROKER:     ${brokerConfig.brokerName} — ${brokerConfig.companyName}`,
+        `SUBMITTED:  ${submittedAt}`,
+        "",
+        divider,
+        "SECTION 1 — BUYER CONTACT INFORMATION",
+        divider,
+        `Full Name:        ${form.fullName}`,
+        `Email:            ${form.email}`,
+        `Phone:            ${form.phone}`,
+        `Street Address:   ${form.address || "Not provided"}`,
+        `City:             ${form.city || "Not provided"}`,
+        `State:            ${form.state || "Not provided"}`,
+        `ZIP Code:         ${form.zip || "Not provided"}`,
+        "",
+        divider,
+        "SECTION 2 — BUYER QUALIFICATION",
+        divider,
+        `Current Occupation:   ${form.occupation || "Not provided"}`,
+        `Funds Available:      ${form.fundsAvailable || "Not provided"}`,
+        `Credit Score Range:   ${form.creditScore || "Not provided"}`,
+        "",
+        "Work History / Background (Last 10 Years):",
+        form.workHistory || "Not provided",
+        "",
+        divider,
+        "SECTION 3 — BUSINESS OF INTEREST",
+        divider,
+        `Listing / Business:   ${form.listingOfInterest || "Not specified"}`,
+        "",
+        divider,
+        "SECTION 4 — NON-DISCLOSURE AGREEMENT TEXT",
+        divider,
+        NDA_LEGAL_TEXT,
+        "",
+        divider,
+        "SECTION 5 — ELECTRONIC SIGNATURE",
+        divider,
+        `Agreed to NDA Terms:  YES — Checkbox confirmed by buyer`,
+        `Signed By:            ${form.fullName}`,
+        `Signature Timestamp:  ${submittedAt}`,
+        `Buyer Email:          ${form.email}`,
+        "",
+        "This submission constitutes a legally binding electronic signature under",
+        "the Electronic Signatures in Global and National Commerce Act (E-SIGN Act),",
+        "15 U.S.C. § 7001 et seq.",
+        separator,
+      ].join("\n");
 
       const payload = {
         access_key: WEB3FORMS_ACCESS_KEY,
         subject: `NDA Submission — ${form.fullName} | ${brokerConfig.companyName}`,
         from_name: form.fullName,
-        email: form.email,
+        email: BROKER_EMAIL,
+        replyto: form.email,
         message: plainTextMessage,
-        html_message: htmlMessage,
         botcheck: "",
       };
 
