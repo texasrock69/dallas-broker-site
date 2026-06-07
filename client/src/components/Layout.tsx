@@ -127,7 +127,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Mobile Nav */}
         {mobileOpen && (
-          <nav className="md:hidden border-t border-gray-700 bg-[#0a0a1a]">
+          <nav className="md:hidden border-t border-gray-700 bg-[#0a0a1a] overflow-y-auto" style={{ maxHeight: "calc(100dvh - 72px)" }}>
             {navLinks.map((link) => (
               <div key={link.label}>
                 {link.external ? (
