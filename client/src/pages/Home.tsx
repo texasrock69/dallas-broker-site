@@ -365,8 +365,8 @@ export default function Home() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <Link href="/online-nda">
-                  <button className="btn-teal-solid text-sm">Complete NDA to View Listings</button>
+                <Link href="/listings">
+                  <button className="btn-teal-solid text-sm">View Business Listings</button>
                 </Link>
                 <Link href="/buy">
                   <button className="btn-teal text-sm">Learn More</button>

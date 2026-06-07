@@ -5,8 +5,8 @@ import { Link } from "wouter";
 const buyerSteps = [
   {
     step: "01",
-    title: "Complete the NDA",
-    desc: "An Online Non-Disclosure Agreement is required to receive confidential business details. No obligation — just a standard confidentiality protection for the seller.",
+    title: "Browse Listings",
+    desc: "Explore our current business listings across all industries. When you find one that interests you, complete our Online NDA to receive confidential details.",
   },
   {
     step: "02",
@@ -83,8 +83,8 @@ export default function Buying() {
               level and help navigate the entire process from search to closing.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/online-nda">
-                <button className="btn-teal-solid">Complete NDA to View Listings</button>
+              <Link href="/listings">
+                <button className="btn-teal-solid">View Business Listings</button>
               </Link>
               <Link href="/buying-tutorial">
                 <button className="btn-teal">Buyer's Guide</button>

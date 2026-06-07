@@ -17,7 +17,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "how do i buy a business",
-    a: `Buying a business starts with completing our Online NDA, then we'll share our confidential listings and help match you with businesses that fit your budget and interests. We offer free consultations for buyers. Visit the Buy page or complete the Online NDA to get started.`,
+    a: `Buying a business starts with browsing our current listings — no NDA required to view them. When you find a business you're interested in, complete our Online NDA to receive confidential details like financials and seller information. We offer free consultations for buyers. Visit the Listings page to get started.`,
   },
   {
     q: "what is an nda",
@@ -41,7 +41,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "listings",
-    a: `We maintain a confidential list of businesses for sale. Not all listings are publicly posted to protect seller confidentiality. Complete our Online NDA to receive our full current listings.`,
+    a: `Our current business listings are available to browse on the Listings page — no NDA required. When you find a business you're interested in, complete our Online NDA to receive confidential details such as financials and seller identity. Not all listings are publicly posted to protect seller confidentiality.`,
   },
 ];
 
