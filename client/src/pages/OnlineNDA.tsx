@@ -153,59 +153,79 @@ export default function OnlineNDA() {
         timeZoneName: "short",
       });
 
-      const plainTextMessage = [
-        "================================================================",
-        "  ONLINE NON-DISCLOSURE AGREEMENT — COMPLETED SUBMISSION",
-        "================================================================",
-        "",
-        `Broker:     ${brokerConfig.brokerName}`,
-        `Company:    ${brokerConfig.companyName}`,
-        `Submitted:  ${submittedAt}`,
-        "",
-        "----------------------------------------------------------------",
-        "SECTION 1 — BUYER CONTACT INFORMATION",
-        "----------------------------------------------------------------",
-        `Full Name:              ${form.fullName}`,
-        `Email Address:          ${form.email}`,
-        `Phone Number:           ${form.phone}`,
-        `Street Address:         ${form.address}`,
-        `City:                   ${form.city}`,
-        `State:                  ${form.state}`,
-        `ZIP Code:               ${form.zip}`,
-        "",
-        "----------------------------------------------------------------",
-        "SECTION 2 — BUYER QUALIFICATION",
-        "----------------------------------------------------------------",
-        `Current Occupation:     ${form.occupation || "Not provided"}`,
-        `Funds Available:        ${form.fundsAvailable || "Not provided"}`,
-        `Credit Score Range:     ${form.creditScore || "Not provided"}`,
-        "Work History (Last 10 Years):",
-        form.workHistory || "Not provided",
-        "",
-        "----------------------------------------------------------------",
-        "SECTION 3 — BUSINESS INTEREST",
-        "----------------------------------------------------------------",
-        "Listing / Business of Interest:",
-        form.listingOfInterest || "Not specified",
-        "",
-        "----------------------------------------------------------------",
-        "SECTION 4 — ELECTRONIC SIGNATURE",
-        "----------------------------------------------------------------",
-        "Agreed to NDA Terms:    YES — Checkbox confirmed",
-        `Agreement Timestamp:    ${submittedAt}`,
-        "Drawn Signature:        YES — Signature image attached below",
-        "",
-        "----------------------------------------------------------------",
-        "SECTION 5 — FULL NON-DISCLOSURE AGREEMENT TEXT AGREED TO",
-        "----------------------------------------------------------------",
-        "",
-        NDA_LEGAL_TEXT,
-        "",
-        "================================================================",
-        "  This submission constitutes a legally binding electronic",
-        "  signature under the E-SIGN Act, 15 U.S.C. § 7001 et seq.",
-        "================================================================",
-      ].join("\n");
+      const ndaTextHtml = NDA_LEGAL_TEXT
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\n/g, "<br>");
+
+      const plainTextMessage = `NDA Submission — ${form.fullName} | ${submittedAt}`;
+
+      const htmlMessage = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body { margin: 0; padding: 0; background: #f4f4f4; font-family: 'Times New Roman', Times, serif; }
+  .page { max-width: 720px; margin: 24px auto; background: #ffffff; border: 1px solid #ccc; padding: 48px 56px; color: #111; font-size: 13px; line-height: 1.7; }
+  .doc-title { text-align: center; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #111; padding-bottom: 12px; margin-bottom: 20px; }
+  .meta { text-align: center; font-size: 12px; color: #444; margin-bottom: 28px; }
+  .section-heading { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid #999; padding-bottom: 4px; margin: 28px 0 12px 0; }
+  .field-row { display: flex; margin-bottom: 6px; }
+  .field-label { width: 220px; min-width: 220px; font-weight: bold; color: #333; }
+  .field-value { flex: 1; }
+  .nda-text { font-size: 11.5px; line-height: 1.75; color: #222; margin-top: 8px; }
+  .sig-area { margin-top: 12px; border: 1px solid #aaa; padding: 10px 14px; display: inline-block; background: #fafafa; }
+  .sig-label { font-size: 11px; color: #555; margin-bottom: 6px; }
+  .footer-note { margin-top: 32px; border-top: 1px solid #ccc; padding-top: 12px; font-size: 11px; color: #555; text-align: center; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="doc-title">Online Non-Disclosure Agreement<br>Completed Submission</div>
+  <div class="meta">
+    <strong>${brokerConfig.brokerName}</strong> &nbsp;&bull;&nbsp; ${brokerConfig.companyName}<br>
+    Submitted: ${submittedAt}
+  </div>
+
+  <div class="section-heading">Section 1 &mdash; Buyer Contact Information</div>
+  <div class="field-row"><span class="field-label">Full Name:</span><span class="field-value">${form.fullName}</span></div>
+  <div class="field-row"><span class="field-label">Email Address:</span><span class="field-value">${form.email}</span></div>
+  <div class="field-row"><span class="field-label">Phone Number:</span><span class="field-value">${form.phone}</span></div>
+  <div class="field-row"><span class="field-label">Street Address:</span><span class="field-value">${form.address}</span></div>
+  <div class="field-row"><span class="field-label">City:</span><span class="field-value">${form.city}</span></div>
+  <div class="field-row"><span class="field-label">State:</span><span class="field-value">${form.state}</span></div>
+  <div class="field-row"><span class="field-label">ZIP Code:</span><span class="field-value">${form.zip}</span></div>
+
+  <div class="section-heading">Section 2 &mdash; Buyer Qualification</div>
+  <div class="field-row"><span class="field-label">Current Occupation:</span><span class="field-value">${form.occupation || "Not provided"}</span></div>
+  <div class="field-row"><span class="field-label">Funds Available:</span><span class="field-value">${form.fundsAvailable || "Not provided"}</span></div>
+  <div class="field-row"><span class="field-label">Credit Score Range:</span><span class="field-value">${form.creditScore || "Not provided"}</span></div>
+  <div class="field-row"><span class="field-label">Work History (10 yrs):</span><span class="field-value">${form.workHistory || "Not provided"}</span></div>
+
+  <div class="section-heading">Section 3 &mdash; Business of Interest</div>
+  <div class="field-row"><span class="field-label">Listing / Business:</span><span class="field-value">${form.listingOfInterest || "Not specified"}</span></div>
+
+  <div class="section-heading">Section 4 &mdash; Non-Disclosure Agreement Text</div>
+  <div class="nda-text">${ndaTextHtml}</div>
+
+  <div class="section-heading">Section 5 &mdash; Electronic Signature</div>
+  <div class="field-row"><span class="field-label">Agreed to NDA Terms:</span><span class="field-value">YES &mdash; Checkbox confirmed</span></div>
+  <div class="field-row"><span class="field-label">Agreement Timestamp:</span><span class="field-value">${submittedAt}</span></div>
+  <div style="margin-top: 14px;">
+    <div style="font-weight: bold; margin-bottom: 6px;">Buyer Signature:</div>
+    <div class="sig-area">
+      <div class="sig-label">Electronically signed by ${form.fullName}</div>
+      <img src="${signatureDataUrl}" width="380" height="110" alt="Buyer Signature" style="display:block;" />
+    </div>
+  </div>
+
+  <div class="footer-note">This submission constitutes a legally binding electronic signature under the Electronic Signatures in Global and National Commerce Act (E-SIGN Act), 15 U.S.C. &sect; 7001 et seq.</div>
+
+</div>
+</body>
+</html>`.trim();
 
       const payload = {
         access_key: WEB3FORMS_ACCESS_KEY,
@@ -213,6 +233,7 @@ export default function OnlineNDA() {
         from_name: form.fullName,
         email: form.email,
         message: plainTextMessage,
+        html_message: htmlMessage,
         botcheck: "",
       };
 
