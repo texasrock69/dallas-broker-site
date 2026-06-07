@@ -8,7 +8,7 @@ const NDA_LEGAL_TEXT = `ONLINE NON-DISCLOSURE TERMS ARE NOT NEGOTIABLE. BY SIGNI
 
 It is understood and agreed to that we the BROKER identified herein will provide disclosure of confidential Information that must not be disclosed or shared with anyone other than the BROKER, SELLER, and their financial and legal advisors. To ensure the protection of such Information, and to preserve any confidentiality necessary under patent and/or trade secret laws, it is agreed to the following terms of this Non-Disclosure Agreement.
 
-BUYER agrees all information provided by BROKER to BUYER is confidential and its disclosure to others may be damaging and detrimental to the business and that BUYER agrees to sign a Memo Record of Showing or provide similar acknowledgement on every business disclosed by BROKER to BUYER providing proof that a business(s) was disclosed to the BUYER.
+BUYER agrees all information provided by BROKER to BUYER is confidential and its disclosure to others may be damaging and detrimental to the business. BUYER acknowledges that by signing this Agreement, they are creating a formal record of their engagement with BROKER. BROKER may maintain records of all businesses disclosed to BUYER, and BUYER agrees that this Agreement serves as acknowledgment of that disclosure relationship.
 
 BUYER agrees not to provide information regarding a disclosed business to anyone except those who may be directly involved in a sale and their financial or legal advisors or as ordered by law. BUYER expressly agrees NOT to contact SELLER(s), nor any person related to the business (including but not limited to employees, suppliers, landlords, or business associates), directly at any time, for any reason, without the prior written consent of BROKER. All communications, inquiries, offers, negotiations, and requests directed to SELLER must be conducted exclusively through BROKER. Any direct contact by BUYER with SELLER or parties related to the business, without BROKER's express written consent, shall constitute a material breach of this Agreement.
 
@@ -140,6 +140,9 @@ export default function OnlineNDA() {
 
     setSubmitting(true);
     try {
+      // Capture signature as base64 PNG image
+      const signatureDataUrl = canvasRef.current?.toDataURL("image/png") || "";
+
       const submittedAt = new Date().toLocaleString("en-US", {
         weekday: "long",
         year: "numeric",
@@ -150,59 +153,69 @@ export default function OnlineNDA() {
         timeZoneName: "short",
       });
 
+      const htmlMessage = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><style>
+  body { font-family: Arial, sans-serif; color: #1a1a2e; font-size: 14px; line-height: 1.6; }
+  h1 { background: #1a1a2e; color: #ffffff; padding: 16px 20px; font-size: 18px; margin: 0; }
+  h2 { color: #00b4c8; font-size: 14px; border-bottom: 2px solid #00b4c8; padding-bottom: 4px; margin-top: 24px; }
+  .content { padding: 20px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+  td { padding: 6px 8px; border-bottom: 1px solid #eee; }
+  td:first-child { font-weight: bold; width: 200px; color: #555; }
+  .nda-text { background: #f8f9fa; border-left: 4px solid #00b4c8; padding: 16px; font-size: 12px; color: #444; white-space: pre-wrap; margin-top: 8px; }
+  .sig-box { border: 2px solid #1a1a2e; border-radius: 6px; padding: 12px; background: #fff; display: inline-block; margin-top: 8px; }
+  .footer { background: #f0f0f0; padding: 12px 20px; font-size: 12px; color: #666; margin-top: 24px; }
+</style></head>
+<body>
+<h1>ONLINE NON-DISCLOSURE AGREEMENT — COMPLETED SUBMISSION</h1>
+<div class="content">
+  <table><tr><td>Broker</td><td>${brokerConfig.brokerName}</td></tr><tr><td>Company</td><td>${brokerConfig.companyName}</td></tr><tr><td>Submitted</td><td>${submittedAt}</td></tr></table>
+
+  <h2>SECTION 1 — BUYER CONTACT INFORMATION</h2>
+  <table>
+    <tr><td>Full Name</td><td>${form.fullName}</td></tr>
+    <tr><td>Email Address</td><td>${form.email}</td></tr>
+    <tr><td>Phone Number</td><td>${form.phone}</td></tr>
+    <tr><td>Street Address</td><td>${form.address}</td></tr>
+    <tr><td>City</td><td>${form.city}</td></tr>
+    <tr><td>State</td><td>${form.state}</td></tr>
+    <tr><td>ZIP Code</td><td>${form.zip}</td></tr>
+  </table>
+
+  <h2>SECTION 2 — BUYER QUALIFICATION</h2>
+  <table>
+    <tr><td>Current Occupation</td><td>${form.occupation || "Not provided"}</td></tr>
+    <tr><td>Funds Available</td><td>${form.fundsAvailable || "Not provided"}</td></tr>
+    <tr><td>Credit Score Range</td><td>${form.creditScore || "Not provided"}</td></tr>
+    <tr><td>Work History (Last 10 Years)</td><td>${form.workHistory || "Not provided"}</td></tr>
+  </table>
+
+  <h2>SECTION 3 — BUSINESS INTEREST</h2>
+  <table>
+    <tr><td>Listing / Business of Interest</td><td>${form.listingOfInterest || "Not specified"}</td></tr>
+  </table>
+
+  <h2>SECTION 4 — ELECTRONIC SIGNATURE</h2>
+  <p><strong>Agreed to NDA Terms:</strong> YES — Checkbox confirmed<br>
+  <strong>Agreement Timestamp:</strong> ${submittedAt}</p>
+  <p><strong>Buyer's Drawn Signature:</strong></p>
+  <div class="sig-box"><img src="${signatureDataUrl}" width="400" height="120" alt="Buyer Signature" style="display:block;" /></div>
+
+  <h2>SECTION 5 — FULL NDA TEXT AGREED TO</h2>
+  <div class="nda-text">${NDA_LEGAL_TEXT.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}</div>
+</div>
+<div class="footer">This submission constitutes a legally binding electronic signature under the E-SIGN Act, 15 U.S.C. § 7001 et seq.</div>
+</body></html>
+      `.trim();
+
       const payload = {
         access_key: WEB3FORMS_ACCESS_KEY,
         subject: `NDA Submission — ${form.fullName} | ${brokerConfig.companyName}`,
         from_name: form.fullName,
         email: form.email,
-        message: `
-================================================================
-  ONLINE NON-DISCLOSURE AGREEMENT — COMPLETED SUBMISSION
-================================================================
-Broker:     ${brokerConfig.brokerName}
-Company:    ${brokerConfig.companyName}
-Submitted:  ${submittedAt}
-================================================================
-
-SECTION 1 — BUYER CONTACT INFORMATION
---------------------------------------
-Full Name:        ${form.fullName}
-Email Address:    ${form.email}
-Phone Number:     ${form.phone}
-Street Address:   ${form.address}
-City:             ${form.city}
-State:            ${form.state}
-ZIP Code:         ${form.zip}
-
-SECTION 2 — BUYER QUALIFICATION
----------------------------------
-Current Occupation:   ${form.occupation || "Not provided"}
-Funds Available:      ${form.fundsAvailable || "Not provided"}
-Credit Score Range:   ${form.creditScore || "Not provided"}
-Work History (Last 10 Years):
-${form.workHistory ? form.workHistory : "Not provided"}
-
-SECTION 3 — BUSINESS INTEREST
--------------------------------
-Listing / Business of Interest:
-${form.listingOfInterest || "Not specified"}
-
-SECTION 4 — NDA AGREEMENT STATUS
------------------------------------
-Agreed to NDA Terms:        YES — Checkbox confirmed
-Electronic Signature:       YES — Drawn signature provided
-Agreement Timestamp:        ${submittedAt}
-IP / Device:                Captured at time of submission
-
-SECTION 5 — FULL NON-DISCLOSURE AGREEMENT TEXT AGREED TO
-----------------------------------------------------------
-${NDA_LEGAL_TEXT}
-
-================================================================
-  This submission constitutes a legally binding electronic
-  signature under the E-SIGN Act, 15 U.S.C. § 7001 et seq.
-================================================================
-        `.trim(),
+        message: htmlMessage,
         botcheck: "",
       };
 
