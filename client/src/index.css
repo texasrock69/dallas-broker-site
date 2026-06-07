@@ -178,11 +178,15 @@
   @media (max-width: 768px) {
     .parallax-hero {
       background-attachment: scroll;
-      height: 450px;
+      height: auto;
+      min-height: 560px;
+      justify-content: flex-start;
+      padding-top: 2.5rem;
     }
     .parallax-hero > .hero-inner {
       padding-left: 1rem;
       padding-right: 1rem;
+      padding-bottom: 2.5rem;
     }
   }
 
