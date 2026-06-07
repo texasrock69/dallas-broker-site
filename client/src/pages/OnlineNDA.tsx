@@ -215,7 +215,8 @@ export default function OnlineNDA() {
         subject: `NDA Submission — ${form.fullName} | ${brokerConfig.companyName}`,
         from_name: form.fullName,
         email: form.email,
-        message: htmlMessage,
+        message: `NDA Submission from ${form.fullName} — ${submittedAt}`,
+        html_message: htmlMessage,
         botcheck: "",
       };
 
