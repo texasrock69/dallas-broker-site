@@ -10,9 +10,11 @@ It is understood and agreed to that we the BROKER identified herein will provide
 
 BUYER agrees all information provided by BROKER to BUYER is confidential and its disclosure to others may be damaging and detrimental to the business and that BUYER agrees to sign a Memo Record of Showing or provide similar acknowledgement on every business disclosed by BROKER to BUYER providing proof that a business(s) was disclosed to the BUYER.
 
-BUYER agrees not to provide information regarding a disclosed business to anyone except those who may be directly involved in a sale and their financial or legal advisors or as ordered by law. BUYER agrees not to contact SELLER(s) nor anyone that is related to the business (including but not limited to suppliers and employees) without written permission from BROKER. BUYER further agrees that all requests or questions for SELLER will be done through BROKER unless otherwise agreed to by SELLER.
+BUYER agrees not to provide information regarding a disclosed business to anyone except those who may be directly involved in a sale and their financial or legal advisors or as ordered by law. BUYER expressly agrees NOT to contact SELLER(s), nor any person related to the business (including but not limited to employees, suppliers, landlords, or business associates), directly at any time, for any reason, without the prior written consent of BROKER. All communications, inquiries, offers, negotiations, and requests directed to SELLER must be conducted exclusively through BROKER. Any direct contact by BUYER with SELLER or parties related to the business, without BROKER's express written consent, shall constitute a material breach of this Agreement.
 
-BUYER agrees that he or she may be liable for BROKER'S fee paid by the SELLER for any business disclosed to them by BROKER if either of the following conditions occurs: (1) BUYER purchases a business disclosed to them by the BROKER without the involvement of the BROKER; or (2) BUYER leases, manages, or otherwise becomes involved with a business disclosed to them by BROKER.
+BUYER agrees that he or she may be liable for BROKER'S full fee if either of the following conditions occurs: (1) BUYER purchases a business disclosed to them by the BROKER without the involvement of the BROKER; or (2) BUYER leases, manages, or otherwise becomes involved with a business disclosed to them by BROKER.
+
+TWO-YEAR TAIL PERIOD: BUYER further agrees that if BUYER purchases, leases, manages, or otherwise acquires any direct or indirect interest in any business that was introduced to or shown to BUYER by BROKER, within a period of twenty-four (24) months from the date of this Agreement or from the date such business was disclosed to BUYER (whichever is later), BUYER shall be liable to BROKER for BROKER's full commission fee, regardless of whether BROKER's listing agreement with SELLER remains in effect at the time of such transaction. This obligation survives the expiration or termination of any listing agreement between BROKER and SELLER. BUYER acknowledges that this two-year tail provision is a material term of this Agreement and constitutes fair and reasonable consideration for the confidential business information disclosed by BROKER.
 
 BUYER agrees that he/she will be personally liable to pay BROKER for the BROKER's fee paid by SELLER if BUYER does any act that results in harm to SELLER's business or BROKER's contract rights with the SELLER. Such acts include but are not limited to BUYER making any information disclosed to them on a business public thereby breaking the strict confidentiality of the transaction or BUYER using any information provided by SELLER for their own personal gain other than purchasing SELLER's business or anything associated with said business.
 
@@ -482,22 +484,33 @@ ${NDA_LEGAL_TEXT}
               <p>
                 BUYER agrees not to provide information regarding a disclosed business to anyone
                 except those who may be directly involved in a sale and their financial or legal
-                advisors or as ordered by law. BUYER agrees not to contact SELLER(s) nor anyone that
-                is related to the business (including but not limited to suppliers and employees)
-                without written permission from BROKER. BUYER further agrees that all requests or
-                questions for SELLER will be done through BROKER unless otherwise agreed to by
-                SELLER.
+                advisors or as ordered by law. <strong>BUYER expressly agrees NOT to contact
+                SELLER(s), nor any person related to the business (including but not limited to
+                employees, suppliers, landlords, or business associates), directly at any time, for
+                any reason, without the prior written consent of BROKER.</strong> All communications,
+                inquiries, offers, negotiations, and requests directed to SELLER must be conducted
+                exclusively through BROKER. Any direct contact by BUYER with SELLER or parties
+                related to the business, without BROKER's express written consent, shall constitute
+                a material breach of this Agreement.
               </p>
               <p>
-                BUYER agrees that he or she may be liable for BROKER'S fee paid by the SELLER for
-                any business disclosed to them by BROKER if either of the following conditions
-                occurs:{" "}
-                <strong>
-                  BUYER purchases a business disclosed to them by the BROKER without the involvement
-                  of the BROKER.
-                </strong>{" "}
-                BUYER leases, manages, or otherwise becomes involved with a business disclosed to
-                them by BROKER.
+                BUYER agrees that he or she may be liable for BROKER'S full fee if either of the
+                following conditions occurs: (1) BUYER purchases a business disclosed to them by the
+                BROKER without the involvement of the BROKER; or (2) BUYER leases, manages, or
+                otherwise becomes involved with a business disclosed to them by BROKER.
+              </p>
+              <p>
+                <strong>TWO-YEAR TAIL PERIOD:</strong> BUYER further agrees that if BUYER purchases,
+                leases, manages, or otherwise acquires any direct or indirect interest in any
+                business that was introduced to or shown to BUYER by BROKER, within a period of{" "}
+                <strong>twenty-four (24) months</strong> from the date of this Agreement or from the
+                date such business was disclosed to BUYER (whichever is later), BUYER shall be
+                liable to BROKER for BROKER's full commission fee, regardless of whether BROKER's
+                listing agreement with SELLER remains in effect at the time of such transaction.
+                This obligation survives the expiration or termination of any listing agreement
+                between BROKER and SELLER. BUYER acknowledges that this two-year tail provision is
+                a material term of this Agreement and constitutes fair and reasonable consideration
+                for the confidential business information disclosed by BROKER.
               </p>
               <p>
                 BUYER agrees that he/she will be personally liable to pay BROKER for the BROKER's
