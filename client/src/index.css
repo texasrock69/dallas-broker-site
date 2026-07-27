@@ -76,20 +76,9 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Open Sans', sans-serif;
-    font-size: 16.5px;
-    line-height: 1.75;
-  }
-  p {
-    font-size: 1rem; /* 16.5px base */
-    line-height: 1.8;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Raleway', sans-serif;
-    line-height: 1.25;
-  }
-  /* Slightly larger nav and label text */
-  nav a, nav button {
-    font-size: 0.95rem;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -160,7 +149,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    filter: brightness(1.05) contrast(1.03) saturate(1.06);
+    filter: brightness(1.12) contrast(1.04) saturate(1.08);
   }
 
   .parallax-hero > .hero-inner {
@@ -178,15 +167,11 @@
   @media (max-width: 768px) {
     .parallax-hero {
       background-attachment: scroll;
-      height: auto;
-      min-height: 560px;
-      justify-content: flex-start;
-      padding-top: 2.5rem;
+      height: 450px;
     }
     .parallax-hero > .hero-inner {
       padding-left: 1rem;
       padding-right: 1rem;
-      padding-bottom: 2.5rem;
     }
   }
 

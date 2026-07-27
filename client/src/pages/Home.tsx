@@ -230,7 +230,7 @@ export default function Home() {
         className="parallax-hero"
         style={{ backgroundImage: `url(${brokerConfig.heroImage})` }}
       >
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0) 100%), linear-gradient(to top, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 60%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0) 100%)" }} />
         <div className="hero-inner">
           <div className="max-w-2xl">
             <p
@@ -245,7 +245,6 @@ export default function Home() {
                 fontFamily: "Raleway, sans-serif",
                 fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
                 letterSpacing: "-0.02em",
-                textShadow: "0 2px 12px rgba(0,0,0,0.75), 0 1px 4px rgba(0,0,0,0.9)",
               }}
             >
               Selling Your Business
@@ -365,8 +364,8 @@ export default function Home() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <Link href="/listings">
-                  <button className="btn-teal-solid text-sm">View Business Listings</button>
+                <Link href="/online-nda">
+                  <button className="btn-teal-solid text-sm">Complete NDA to View Listings</button>
                 </Link>
                 <Link href="/buy">
                   <button className="btn-teal text-sm">Learn More</button>
@@ -399,7 +398,7 @@ export default function Home() {
               <div key={s.step} className="relative">
                 <div
                   className="text-5xl font-extrabold mb-4"
-                  style={{ color: "rgba(0,180,200,0.45)", fontFamily: "Raleway, sans-serif" }}
+                  style={{ color: "rgba(0,180,200,0.15)", fontFamily: "Raleway, sans-serif" }}
                 >
                   {s.step}
                 </div>
@@ -409,7 +408,7 @@ export default function Home() {
                 >
                   {s.title}
                 </h3>
-                <p className="text-gray-300 text-sm leading-relaxed">{s.desc}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
                 {/* connector line */}
                 <div className="hidden md:block absolute top-6 right-0 w-1/2 h-px bg-[#00b4c8]/20" />
               </div>

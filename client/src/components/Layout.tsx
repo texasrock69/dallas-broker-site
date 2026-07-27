@@ -86,7 +86,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block px-4 py-3 text-[0.95rem] font-semibold text-gray-300 hover:text-white transition-colors"
+                    className="block px-4 py-3 text-sm font-semibold text-gray-300 hover:text-white transition-colors"
                     style={{ fontFamily: "Raleway, sans-serif" }}
                   >
                     {link.label}
@@ -94,7 +94,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 ) : (
                   <Link
                     href={link.href}
-                    className={`block px-4 py-3 text-[0.95rem] font-semibold transition-colors ${
+                    className={`block px-4 py-3 text-sm font-semibold transition-colors ${
                       location === link.href
                         ? "text-white border-b-2 border-[#00b4c8]"
                         : "text-gray-300 hover:text-white"
@@ -112,7 +112,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-4 py-2.5 text-[0.9rem] text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
+                        className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
                         style={{ fontFamily: "Raleway, sans-serif" }}
                       >
                         {child.label}
@@ -127,7 +127,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Mobile Nav */}
         {mobileOpen && (
-          <nav className="md:hidden border-t border-gray-700 bg-[#0a0a1a] overflow-y-auto" style={{ maxHeight: "calc(100dvh - 72px)" }}>
+          <nav className="md:hidden border-t border-gray-700 bg-[#0a0a1a]">
             {navLinks.map((link) => (
               <div key={link.label}>
                 {link.external ? (
@@ -135,7 +135,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block px-4 py-3 text-[0.95rem] font-semibold text-gray-300 border-b border-gray-800"
+                    className="block px-4 py-3 text-sm font-semibold text-gray-300 border-b border-gray-800"
                     style={{ fontFamily: "Raleway, sans-serif" }}
                     onClick={() => setMobileOpen(false)}
                   >
@@ -144,7 +144,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 ) : (
                   <Link
                     href={link.href}
-                    className="block px-4 py-3 text-[0.95rem] font-semibold text-gray-300 border-b border-gray-800"
+                    className="block px-4 py-3 text-sm font-semibold text-gray-300 border-b border-gray-800"
                     style={{ fontFamily: "Raleway, sans-serif" }}
                     onClick={() => setMobileOpen(false)}
                   >
@@ -157,7 +157,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-8 py-2.5 text-[0.9rem] text-gray-400 border-b border-gray-800"
+                        className="block px-8 py-2.5 text-sm text-gray-400 border-b border-gray-800"
                         style={{ fontFamily: "Raleway, sans-serif" }}
                         onClick={() => setMobileOpen(false)}
                       >
@@ -190,36 +190,36 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               >
                 {brokerConfig.companyName}
               </div>
-              <div className="text-sm text-gray-300 mb-4">{brokerConfig.companySubtitle}</div>
-              <p className="text-sm text-gray-300 leading-relaxed">
+              <div className="text-xs text-gray-300 mb-4">{brokerConfig.companySubtitle}</div>
+              <p className="text-xs text-gray-300 leading-relaxed">
                 Professional business brokerage services for buyers and sellers in {brokerConfig.locationShort} and beyond.
               </p>
             </div>
 
             {/* For Sellers */}
             <div>
-              <div className="text-white text-base font-bold mb-3" style={{ fontFamily: "Raleway, sans-serif" }}>For Sellers</div>
+              <div className="text-white text-sm font-bold mb-3" style={{ fontFamily: "Raleway, sans-serif" }}>For Sellers</div>
               <div className="space-y-2">
                 {[{ label: "Free Valuation", href: "/sell" }, { label: "Selling Overview", href: "/selling" }, { label: "Seller's Guide", href: "/selling-tutorial" }].map(l => (
-                  <Link key={l.href} href={l.href} className="block text-sm text-gray-300 hover:text-[#00b4c8] transition-colors">{l.label}</Link>
+                  <Link key={l.href} href={l.href} className="block text-xs text-gray-300 hover:text-[#00b4c8] transition-colors">{l.label}</Link>
                 ))}
               </div>
             </div>
 
             {/* For Buyers */}
             <div>
-              <div className="text-white text-base font-bold mb-3" style={{ fontFamily: "Raleway, sans-serif" }}>For Buyers</div>
+              <div className="text-white text-sm font-bold mb-3" style={{ fontFamily: "Raleway, sans-serif" }}>For Buyers</div>
               <div className="space-y-2">
                 {[{ label: "Online NDA", href: "/online-nda" }, { label: "Buying Overview", href: "/buy" }, { label: "Buyer's Guide", href: "/buying-tutorial" }, { label: "Business Listings", href: "/listings" }].map(l => (
-                  <Link key={l.href} href={l.href} className="block text-sm text-gray-300 hover:text-[#00b4c8] transition-colors">{l.label}</Link>
+                  <Link key={l.href} href={l.href} className="block text-xs text-gray-300 hover:text-[#00b4c8] transition-colors">{l.label}</Link>
                 ))}
               </div>
             </div>
 
             {/* Contact */}
             <div>
-              <div className="text-white text-base font-bold mb-3" style={{ fontFamily: "Raleway, sans-serif" }}>Contact</div>
-              <div className="space-y-2 text-sm">
+              <div className="text-white text-sm font-bold mb-3" style={{ fontFamily: "Raleway, sans-serif" }}>Contact</div>
+              <div className="space-y-2 text-xs">
                 <div className="text-white font-semibold">{brokerConfig.brokerName}</div>
                 <div className="text-gray-300">{brokerConfig.brokerTitle}</div>
                 <a href={`tel:${brokerConfig.brokerPhone}`} className="block text-[#00b4c8] hover:underline font-semibold">{brokerConfig.brokerPhoneDisplay}</a>
@@ -229,10 +229,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="border-t border-gray-800 pt-5 flex flex-col md:flex-row items-center justify-between gap-2">
-            <div className="text-sm text-gray-300">
+            <div className="text-xs text-gray-300">
               &copy; {brokerConfig.copyrightYear} {brokerConfig.parentCompany}. All rights reserved.
             </div>
-            <div className="text-sm text-gray-300">
+            <div className="text-xs text-gray-300">
               Business Brokerage Services &middot; {brokerConfig.locationShort}
             </div>
           </div>

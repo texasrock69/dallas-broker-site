@@ -1,19 +1,10 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch, useLocation } from "wouter";
+import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import ChatBot from "./components/ChatBot";
-import { useEffect } from "react";
-
-function ScrollToTop() {
-  const [location] = useLocation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, [location]);
-  return null;
-}
 
 // Pages
 import Home from "./pages/Home";
@@ -26,8 +17,8 @@ import BuyingTutorial from "./pages/BuyingTutorial";
 import Listings from "./pages/Listings";
 import OnlineNDA from "./pages/OnlineNDA";
 import BecomeBroker from "./pages/BecomeBroker";
+
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path="/" component={Home} />
@@ -53,7 +44,6 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <ScrollToTop />
           <Router />
           <ChatBot />
         </TooltipProvider>
