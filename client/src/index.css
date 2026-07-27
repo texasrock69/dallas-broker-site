@@ -43,11 +43,11 @@
   --primary: oklch(0.65 0.15 195);
   --primary-foreground: oklch(1 0 0);
   --background: oklch(1 0 0);
-  --foreground: oklch(0.15 0.01 250);
+  --foreground: oklch(0.28 0.01 250);
   --card: oklch(0.98 0 0);
-  --card-foreground: oklch(0.15 0.01 250);
+  --card-foreground: oklch(0.28 0.01 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.01 250);
+  --popover-foreground: oklch(0.28 0.01 250);
   --secondary: oklch(0.95 0.005 250);
   --secondary-foreground: oklch(0.25 0.01 250);
   --muted: oklch(0.96 0.003 250);
@@ -121,6 +121,22 @@
     }
   }
 
+  /* Hero entrance animation */
+  @keyframes heroFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-inner > div {
+    animation: heroFadeUp 0.85s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
   /* Parallax hero */
   .parallax-hero {
     position: relative;
@@ -130,12 +146,32 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    filter: brightness(1.12) contrast(1.04) saturate(1.08);
+  }
+
+  .parallax-hero > .hero-inner {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 3.5rem;
   }
 
   @media (max-width: 768px) {
     .parallax-hero {
       background-attachment: scroll;
       height: 450px;
+    }
+    .parallax-hero > .hero-inner {
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 

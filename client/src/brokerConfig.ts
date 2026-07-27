@@ -24,10 +24,10 @@ export const brokerConfig = {
   locationShort: "Dallas / Fort Worth, TX",
 
   // Hero image path (upload your city skyline here)
-  heroImage: "/manus-storage/dallas_skyline_219c50ee.jpg",
+  heroImage: "/manus-storage/dallas7_edited_edited_1839eae9.jpg",
 
   // Broker headshot (optional - leave empty string to hide)
-  brokerPhoto: "/manus-storage/broker_photo_0fe82f75.jpg",
+  brokerPhoto: "/manus-storage/toby_headshot_6eb5af2d.jpeg",
 
   // Testimonial (optional)
   testimonial: {
@@ -40,7 +40,7 @@ export const brokerConfig = {
   becomeBrokerUrl: "http://www.bizbrokersuccess.com",
 
   // Copyright year
-  copyrightYear: "2025",
+  copyrightYear: "2026",
 
   // Stats shown in the teal bar on homepage
   stats: [
