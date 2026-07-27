@@ -2,7 +2,7 @@ import { brokerConfig } from "@/brokerConfig";
 import Layout from "@/components/Layout";
 import { useState } from "react";
 
-const WEB3FORMS_ACCESS_KEY = "f02028ed-7d76-42d5-ad5c-369b700f2d45";
+const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_KEY_HERE";
 
 export default function Sell() {
   const [form, setForm] = useState({
@@ -103,11 +103,11 @@ ${form.additionalInfo}
           >
             Request Received!
           </h2>
-          <p className="text-gray-500 mb-2">
+          <p className="text-gray-600 mb-2">
             Thank you! Your free business valuation request has been received by{" "}
             <strong>{brokerConfig.brokerName}</strong>.
           </p>
-          <p className="text-gray-500 mb-6">
+          <p className="text-gray-600 mb-6">
             We will contact you shortly to schedule your confidential, no-obligation consultation.
           </p>
           <div className="text-sm text-gray-500">
@@ -123,41 +123,30 @@ ${form.additionalInfo}
 
   return (
     <Layout>
-      <div
-        className="py-16 px-4"
-        style={{ background: "linear-gradient(135deg, #0a0a1a 0%, #0d2030 100%)" }}
-      >
+      <div className="site-header py-10 px-4">
         <div className="max-w-4xl mx-auto">
-          <p
-            className="text-[#00b4c8] text-xs uppercase tracking-[0.2em] font-semibold mb-2"
-            style={{ fontFamily: "Raleway, sans-serif" }}
-          >
-            For Business Sellers
-          </p>
           <h1
-            className="text-white font-extrabold text-4xl mb-3"
-            style={{ fontFamily: "Raleway, sans-serif", letterSpacing: "-0.02em" }}
+            className="text-white font-extrabold text-3xl"
+            style={{ fontFamily: "Raleway, sans-serif" }}
           >
             Free Business Valuation
           </h1>
-          <p className="text-gray-400 max-w-xl leading-relaxed">
-            No obligation · 100% confidential · No upfront fees
-          </p>
+          <p className="text-gray-400 mt-1 text-sm">No obligation · 100% confidential</p>
         </div>
       </div>
 
       <div className="max-w-3xl mx-auto px-4 py-12">
-        <h2 className="text-gray-900 font-extrabold text-2xl mb-4" style={{ fontFamily: "Raleway, sans-serif" }}>
+        <h2 className="section-heading text-2xl mb-4" style={{ fontFamily: "Raleway, sans-serif" }}>
           Request Your No-Cost Business Valuation
         </h2>
         <div className="w-12 h-1 bg-[#00b4c8] mb-6" />
 
-        <p className="text-gray-500 leading-relaxed mb-4">
+        <p className="text-gray-600 leading-relaxed mb-4">
           Thinking about selling your business? Get started with a FREE, confidential business
           valuation. There is absolutely no cost and no obligation. We will review your information
           and contact you to discuss what your business is worth in today's market.
         </p>
-        <p className="text-gray-500 leading-relaxed mb-8">
+        <p className="text-gray-600 leading-relaxed mb-8">
           We never charge upfront fees — our services are 100% performance based. You only pay when
           your business sells.
         </p>
@@ -172,7 +161,7 @@ ${form.additionalInfo}
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Your Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -186,7 +175,7 @@ ${form.additionalInfo}
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Email Address <span className="text-red-500">*</span>
               </label>
               <input
@@ -200,7 +189,7 @@ ${form.additionalInfo}
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Phone Number <span className="text-red-500">*</span>
               </label>
               <input
@@ -224,7 +213,7 @@ ${form.additionalInfo}
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Business Name
               </label>
               <input
@@ -237,7 +226,7 @@ ${form.additionalInfo}
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Type of Business <span className="text-red-500">*</span>
               </label>
               <input
@@ -251,7 +240,7 @@ ${form.additionalInfo}
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Years in Business
               </label>
               <input
@@ -264,7 +253,7 @@ ${form.additionalInfo}
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Number of Employees
               </label>
               <input
@@ -277,7 +266,7 @@ ${form.additionalInfo}
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Annual Revenue (Gross Sales)
               </label>
               <input
@@ -290,7 +279,7 @@ ${form.additionalInfo}
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Annual Profit / Cash Flow
               </label>
               <input
@@ -305,7 +294,7 @@ ${form.additionalInfo}
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
               Reason for Selling
             </label>
             <select
@@ -326,7 +315,7 @@ ${form.additionalInfo}
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
               Asking Price (if you have one in mind)
             </label>
             <input
@@ -340,7 +329,7 @@ ${form.additionalInfo}
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
               Additional Information
             </label>
             <textarea

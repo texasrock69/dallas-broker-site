@@ -2,28 +2,8 @@ import { brokerConfig } from "@/brokerConfig";
 import Layout from "@/components/Layout";
 import { useEffect, useRef, useState } from "react";
 
-const WEB3FORMS_ACCESS_KEY = "f02028ed-7d76-42d5-ad5c-369b700f2d45";
-const BROKER_EMAIL = "toby@dallasbizbuysell.com";
-
-const NDA_LEGAL_TEXT = `ONLINE NON-DISCLOSURE TERMS ARE NOT NEGOTIABLE. BY SIGNING BELOW, YOU ARE AGREEING TO THE FOLLOWING NON-DISCLOSURE AGREEMENT IN ITS ENTIRETY.
-
-It is understood and agreed to that we the BROKER identified herein will provide disclosure of confidential Information that must not be disclosed or shared with anyone other than the BROKER, SELLER, and their financial and legal advisors. To ensure the protection of such Information, and to preserve any confidentiality necessary under patent and/or trade secret laws, it is agreed to the following terms of this Non-Disclosure Agreement.
-
-BUYER agrees all information provided by BROKER to BUYER is confidential and its disclosure to others may be damaging and detrimental to the business. BUYER acknowledges that by signing this Agreement, they are creating a formal record of their engagement with BROKER. BROKER may maintain records of all businesses disclosed to BUYER, and BUYER agrees that this Agreement serves as acknowledgment of that disclosure relationship.
-
-BUYER agrees not to provide information regarding a disclosed business to anyone except those who may be directly involved in a sale and their financial or legal advisors or as ordered by law. BUYER expressly agrees NOT to contact SELLER(s), nor any person related to the business (including but not limited to employees, suppliers, landlords, or business associates), directly at any time, for any reason, without the prior written consent of BROKER. All communications, inquiries, offers, negotiations, and requests directed to SELLER must be conducted exclusively through BROKER. Any direct contact by BUYER with SELLER or parties related to the business, without BROKER's express written consent, shall constitute a material breach of this Agreement.
-
-BUYER agrees that he or she may be liable for BROKER'S full fee if either of the following conditions occurs: (1) BUYER purchases a business disclosed to them by the BROKER without the involvement of the BROKER; or (2) BUYER leases, manages, or otherwise becomes involved with a business disclosed to them by BROKER.
-
-TWO-YEAR TAIL PERIOD: BUYER further agrees that if BUYER purchases, leases, manages, or otherwise acquires any direct or indirect interest in any business that was introduced to or shown to BUYER by BROKER, within a period of twenty-four (24) months from the date of this Agreement or from the date such business was disclosed to BUYER (whichever is later), BUYER shall be liable to BROKER for BROKER's full commission fee, regardless of whether BROKER's listing agreement with SELLER remains in effect at the time of such transaction. This obligation survives the expiration or termination of any listing agreement between BROKER and SELLER. BUYER acknowledges that this two-year tail provision is a material term of this Agreement and constitutes fair and reasonable consideration for the confidential business information disclosed by BROKER.
-
-BUYER agrees that he/she will be personally liable to pay BROKER for the BROKER's fee paid by SELLER if BUYER does any act that results in harm to SELLER's business or BROKER's contract rights with the SELLER. Such acts include but are not limited to BUYER making any information disclosed to them on a business public thereby breaking the strict confidentiality of the transaction or BUYER using any information provided by SELLER for their own personal gain other than purchasing SELLER's business or anything associated with said business.
-
-BUYER understands that the SELLER has supplied all Information without BROKER's confirmation. It is the BUYER's responsibility to confirm the accuracy of any and all information provided to the BUYER. BUYER also agrees to indemnify and hold BROKER and its agents harmless from any claims or damages which may occur from the inaccuracy or incompleteness of any information provided to BUYER with respect to any business disclosed or purchased.
-
-BUYER agrees and understands that BROKER represents the SELLER and his or her interests based on a contract with the SELLER and that BROKER has no contracted rights with the BUYER. Be it understood that the BROKER's duty is limited only to negotiating the sale of the business at mutually agreed upon terms and conditions between BUYER and SELLER. Our compensation will be received from the SELLER unless other arrangements are made with you in writing.
-
-This agreement is governed by the laws of the State of Texas. This electronic signature constitutes a legally binding agreement under the Electronic Signatures in Global and National Commerce Act (E-SIGN Act), 15 U.S.C. § 7001 et seq.`;
+// Web3Forms access key - user needs to register at web3forms.com (free) and replace this
+const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_KEY_HERE";
 
 export default function OnlineNDA() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -42,11 +22,10 @@ export default function OnlineNDA() {
     city: "",
     state: "",
     zip: "",
-    occupation: "",
-    fundsAvailable: "",
-    creditScore: "",
-    workHistory: "",
-    listingOfInterest: "",
+    businessOfInterest: "",
+    investmentRange: "",
+    timeframe: "",
+    currentOccupation: "",
     agreeToNDA: false,
   });
 
@@ -58,29 +37,26 @@ export default function OnlineNDA() {
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = "#1a1a2e";
-    ctx.lineWidth = 2.5;
+    ctx.lineWidth = 2;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
   }, []);
 
   const getPos = (e: React.MouseEvent | React.TouchEvent, canvas: HTMLCanvasElement) => {
     const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
     if ("touches" in e) {
       return {
-        x: (e.touches[0].clientX - rect.left) * scaleX,
-        y: (e.touches[0].clientY - rect.top) * scaleY,
+        x: e.touches[0].clientX - rect.left,
+        y: e.touches[0].clientY - rect.top,
       };
     }
     return {
-      x: ((e as React.MouseEvent).clientX - rect.left) * scaleX,
-      y: ((e as React.MouseEvent).clientY - rect.top) * scaleY,
+      x: (e as React.MouseEvent).clientX - rect.left,
+      y: (e as React.MouseEvent).clientY - rect.top,
     };
   };
 
   const startDraw = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
     const canvas = canvasRef.current;
     if (!canvas) return;
     setIsDrawing(true);
@@ -90,7 +66,6 @@ export default function OnlineNDA() {
   };
 
   const draw = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
     if (!isDrawing) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -139,81 +114,43 @@ export default function OnlineNDA() {
       return;
     }
 
+    const signatureData = canvasRef.current?.toDataURL("image/png") || "";
+
     setSubmitting(true);
     try {
-      const submittedAt = new Date().toLocaleString("en-US", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        timeZoneName: "short",
-      });
-
-      const separator = "================================================================";
-      const divider   = "----------------------------------------------------------------";
-
-      const plainTextMessage = [
-        separator,
-        `  NDA SUBMISSION — ${form.fullName.toUpperCase()}`,
-        separator,
-        "",
-        `BROKER:     ${brokerConfig.brokerName} — ${brokerConfig.companyName}`,
-        `SUBMITTED:  ${submittedAt}`,
-        "",
-        divider,
-        "SECTION 1 — BUYER CONTACT INFORMATION",
-        divider,
-        `Full Name:        ${form.fullName}`,
-        `Email:            ${form.email}`,
-        `Phone:            ${form.phone}`,
-        `Street Address:   ${form.address || "Not provided"}`,
-        `City:             ${form.city || "Not provided"}`,
-        `State:            ${form.state || "Not provided"}`,
-        `ZIP Code:         ${form.zip || "Not provided"}`,
-        "",
-        divider,
-        "SECTION 2 — BUYER QUALIFICATION",
-        divider,
-        `Current Occupation:   ${form.occupation || "Not provided"}`,
-        `Funds Available:      ${form.fundsAvailable || "Not provided"}`,
-        `Credit Score Range:   ${form.creditScore || "Not provided"}`,
-        "",
-        "Work History / Background (Last 10 Years):",
-        form.workHistory || "Not provided",
-        "",
-        divider,
-        "SECTION 3 — BUSINESS OF INTEREST",
-        divider,
-        `Listing / Business:   ${form.listingOfInterest || "Not specified"}`,
-        "",
-        divider,
-        "SECTION 4 — NON-DISCLOSURE AGREEMENT TEXT",
-        divider,
-        NDA_LEGAL_TEXT,
-        "",
-        divider,
-        "SECTION 5 — ELECTRONIC SIGNATURE",
-        divider,
-        `Agreed to NDA Terms:  YES — Checkbox confirmed by buyer`,
-        `Signed By:            ${form.fullName}`,
-        `Signature Timestamp:  ${submittedAt}`,
-        `Buyer Email:          ${form.email}`,
-        "",
-        "This submission constitutes a legally binding electronic signature under",
-        "the Electronic Signatures in Global and National Commerce Act (E-SIGN Act),",
-        "15 U.S.C. § 7001 et seq.",
-        separator,
-      ].join("\n");
-
       const payload = {
         access_key: WEB3FORMS_ACCESS_KEY,
-        subject: `NDA Submission — ${form.fullName} | ${brokerConfig.companyName}`,
+        subject: `Online NDA Submission - ${form.fullName} | ${brokerConfig.companyName}`,
         from_name: form.fullName,
-        email: BROKER_EMAIL,
-        replyto: form.email,
-        message: plainTextMessage,
+        email: form.email,
+        message: `
+ONLINE NON-DISCLOSURE AGREEMENT SUBMISSION
+==========================================
+Broker: ${brokerConfig.brokerName} | ${brokerConfig.companyName}
+Submitted: ${new Date().toLocaleString()}
+
+BUYER INFORMATION
+-----------------
+Full Name: ${form.fullName}
+Email: ${form.email}
+Phone: ${form.phone}
+Address: ${form.address}, ${form.city}, ${form.state} ${form.zip}
+
+BUSINESS INTEREST
+-----------------
+Business of Interest: ${form.businessOfInterest}
+Investment Range: ${form.investmentRange}
+Purchase Timeframe: ${form.timeframe}
+Current Occupation: ${form.currentOccupation}
+
+NDA AGREEMENT
+-------------
+Agreed to NDA Terms: YES
+Electronic Signature: Provided (drawn signature captured)
+Signature Data: ${signatureData.substring(0, 100)}... [full signature image captured]
+
+This submission constitutes a legally binding electronic signature under the E-SIGN Act.
+        `.trim(),
         botcheck: "",
       };
 
@@ -251,14 +188,13 @@ export default function OnlineNDA() {
           >
             NDA Submitted Successfully
           </h2>
-          <p className="text-gray-500 mb-2">
-            Thank you, <strong>{form.fullName}</strong>. Your Non-Disclosure Agreement has been
-            received by <strong>{brokerConfig.brokerName}</strong>.
+          <p className="text-gray-600 mb-2">
+            Thank you! Your Non-Disclosure Agreement has been received by{" "}
+            <strong>{brokerConfig.brokerName}</strong>.
           </p>
-          <p className="text-gray-500 mb-6">
+          <p className="text-gray-600 mb-6">
             We will reach out to you shortly to discuss your interest in buying a business. Because
-            of confidentiality, we will <strong>NOT</strong> leave a message if we do not reach you
-            directly, unless you indicated otherwise.
+            of confidentiality, we will NOT leave a message unless you indicated otherwise.
           </p>
           <div className="text-sm text-gray-500">
             Questions? Call us at{" "}
@@ -273,141 +209,208 @@ export default function OnlineNDA() {
 
   return (
     <Layout>
-      {/* Page Header */}
-      <div
-        className="py-16 px-4"
-        style={{ background: "linear-gradient(135deg, #0a0a1a 0%, #0d2030 100%)" }}
-      >
+      <div className="site-header py-10 px-4">
         <div className="max-w-4xl mx-auto">
-          <p
-            className="text-[#00b4c8] text-xs uppercase tracking-[0.2em] font-semibold mb-2"
-            style={{ fontFamily: "Raleway, sans-serif" }}
-          >
-            For Buyers
-          </p>
           <h1
-            className="text-white font-extrabold text-4xl mb-3"
-            style={{ fontFamily: "Raleway, sans-serif", letterSpacing: "-0.02em" }}
+            className="text-white font-extrabold text-3xl"
+            style={{ fontFamily: "Raleway, sans-serif" }}
           >
             Online Non-Disclosure Agreement
           </h1>
-          <p className="text-gray-400 max-w-xl leading-relaxed">
-            A Non-Disclosure Agreement is required before we can share confidential details about
-            any business for sale. Complete the form below to get started — there is no obligation
-            and no cost.
-          </p>
         </div>
       </div>
 
       <div className="max-w-3xl mx-auto px-4 py-12">
-        {/* Broker header */}
-        <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <div className="font-bold text-gray-800 text-lg" style={{ fontFamily: "Raleway, sans-serif" }}>
-              {brokerConfig.companyName}
-            </div>
-            <div className="text-gray-500 text-sm">{brokerConfig.parentCompany}</div>
+        {/* Header info */}
+        <div className="mb-8">
+          <div className="font-bold text-gray-800 text-lg" style={{ fontFamily: "Raleway, sans-serif" }}>
+            {brokerConfig.companyName}
           </div>
-          <div className="text-sm text-gray-500 text-right">
-            <div className="font-semibold text-gray-800">{brokerConfig.brokerName}</div>
-            <div className="text-gray-500 text-xs">{brokerConfig.brokerTitle}</div>
-            <a href={`tel:${brokerConfig.brokerPhone}`} className="text-[#00b4c8] hover:underline block">{brokerConfig.brokerPhoneDisplay}</a>
-            <a href={`mailto:${brokerConfig.brokerEmail}`} className="text-[#00b4c8] hover:underline block">{brokerConfig.brokerEmail}</a>
-          </div>
+          <div className="text-gray-500 text-sm">{brokerConfig.parentCompany}</div>
+          <div className="mt-2 text-sm text-gray-600">{brokerConfig.brokerName}</div>
+          <div className="text-sm text-gray-600">{brokerConfig.brokerPhoneDisplay}</div>
+          <a href={`mailto:${brokerConfig.brokerEmail}`} className="text-[#00b4c8] hover:underline text-sm">
+            {brokerConfig.brokerEmail}
+          </a>
         </div>
 
         <div className="w-12 h-1 bg-[#00b4c8] mb-8" />
 
-        <p className="text-gray-500 leading-relaxed mb-4">
-          A Non-Disclosure is required to learn about our businesses for sale. Our contract with our
-          business seller clients requires that we collect simple buyer qualification data and a
+        <p className="text-gray-600 leading-relaxed mb-4">
+          A Non Disclosure is required to learn about our businesses for sale. Our contract with
+          our business seller clients requires that we collect simple buyer qualification data and a
           Non-Disclosure. ALL business buyer information is kept strictly confidential and used
-          solely by our company for the purpose of buyer-related communication as well as
-          qualification and non-disclosure purposes.
+          solely by our company for the purpose of buyer related communication as well as the
+          qualification and non-disclosure.
         </p>
-        <p className="text-gray-500 leading-relaxed mb-8">
-          Once you complete the quick process below, {brokerConfig.brokerName} will reach out to
-          discuss your interest in buying a business and/or provide full disclosure on your business
-          of interest. There is <strong>NO obligation</strong> by completing the online NDA below.
+        <p className="text-gray-600 leading-relaxed mb-8">
+          Once you complete the quick process below then we will reach out to you to discuss your
+          interest in buying a business and/or with full disclosure on your business of interest.
+          There is <strong>NO Obligation</strong> by completing the online NDA below.
         </p>
 
-        <div className="bg-gray-50 border border-gray-200 rounded p-3 mb-10">
+        <div className="bg-gray-50 border border-gray-200 rounded p-2 mb-8">
           <p className="text-gray-500 text-sm text-center">
             Complete the form below or call us at{" "}
-            <a href={`tel:${brokerConfig.brokerPhone}`} className="text-[#00b4c8] hover:underline font-semibold">
+            <a href={`tel:${brokerConfig.brokerPhone}`} className="text-[#00b4c8] hover:underline">
               {brokerConfig.brokerPhoneDisplay}
             </a>{" "}
-            to set up a meeting. Because of confidentiality we will <strong>NOT</strong> leave a
-            message if we do not reach you directly (unless you indicate otherwise), so please
-            provide your direct contact information below.
+            to set up a meeting. Because of confidentiality we will NOT leave a message if we do
+            not reach you directly (unless you indicate otherwise).
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* ── SECTION 1: Contact Info ── */}
-          <h3 className="section-heading text-lg font-bold" style={{ fontFamily: "Raleway, sans-serif" }}>
-            Buyer Contact Information
+          <h3
+            className="section-heading text-lg font-bold"
+            style={{ fontFamily: "Raleway, sans-serif" }}
+          >
+            Buyer Information
           </h3>
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Full Name <span className="text-red-500">*</span>
               </label>
-              <input type="text" name="fullName" required value={form.fullName} onChange={handleChange} className="form-input" placeholder="Your full legal name" />
+              <input
+                type="text"
+                name="fullName"
+                required
+                value={form.fullName}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="Your full legal name"
+              />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Email Address <span className="text-red-500">*</span>
               </label>
-              <input type="email" name="email" required value={form.email} onChange={handleChange} className="form-input" placeholder="your@email.com" />
+              <input
+                type="email"
+                name="email"
+                required
+                value={form.email}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="your@email.com"
+              />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Phone Number <span className="text-red-500">*</span>
               </label>
-              <input type="tel" name="phone" required value={form.phone} onChange={handleChange} className="form-input" placeholder="(555) 555-5555" />
+              <input
+                type="tel"
+                name="phone"
+                required
+                value={form.phone}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="(555) 555-5555"
+              />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">Street Address</label>
-              <input type="text" name="address" value={form.address} onChange={handleChange} className="form-input" placeholder="123 Main Street" />
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Current Occupation
+              </label>
+              <input
+                type="text"
+                name="currentOccupation"
+                value={form.currentOccupation}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="Your current job/industry"
+              />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Street Address
+            </label>
+            <input
+              type="text"
+              name="address"
+              value={form.address}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="123 Main Street"
+            />
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="col-span-2">
-              <label className="block text-sm font-semibold text-gray-600 mb-1">City</label>
-              <input type="text" name="city" value={form.city} onChange={handleChange} className="form-input" placeholder="City" />
+              <label className="block text-sm font-semibold text-gray-700 mb-1">City</label>
+              <input
+                type="text"
+                name="city"
+                value={form.city}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="City"
+              />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">State</label>
-              <input type="text" name="state" value={form.state} onChange={handleChange} className="form-input" placeholder="TX" maxLength={2} />
+              <label className="block text-sm font-semibold text-gray-700 mb-1">State</label>
+              <input
+                type="text"
+                name="state"
+                value={form.state}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="TX"
+                maxLength={2}
+              />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">ZIP</label>
-              <input type="text" name="zip" value={form.zip} onChange={handleChange} className="form-input" placeholder="75201" />
+              <label className="block text-sm font-semibold text-gray-700 mb-1">ZIP</label>
+              <input
+                type="text"
+                name="zip"
+                value={form.zip}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="75201"
+              />
             </div>
           </div>
 
-          {/* ── SECTION 2: Buyer Qualification ── */}
-          <h3 className="section-heading text-lg font-bold pt-4" style={{ fontFamily: "Raleway, sans-serif" }}>
-            Buyer Qualification
+          <h3
+            className="section-heading text-lg font-bold pt-4"
+            style={{ fontFamily: "Raleway, sans-serif" }}
+          >
+            Business Interest
           </h3>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Type of Business / Business of Interest
+            </label>
+            <input
+              type="text"
+              name="businessOfInterest"
+              value={form.businessOfInterest}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="e.g., Restaurant, Auto Repair, Retail, Any"
+            />
+          </div>
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
-                Current Occupation <span className="text-red-500">*</span>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Investment Range
               </label>
-              <input type="text" name="occupation" required value={form.occupation} onChange={handleChange} className="form-input" placeholder="Your current job or industry" />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
-                Funds Available <span className="text-red-500">*</span>
-              </label>
-              <select name="fundsAvailable" required value={form.fundsAvailable} onChange={handleChange} className="form-input">
+              <select
+                name="investmentRange"
+                value={form.investmentRange}
+                onChange={handleChange}
+                className="form-input"
+              >
                 <option value="">Select range...</option>
-                <option value="Less Than $50,000">Less Than $50,000</option>
+                <option value="Under $50,000">Under $50,000</option>
                 <option value="$50,000 - $100,000">$50,000 – $100,000</option>
                 <option value="$100,000 - $250,000">$100,000 – $250,000</option>
                 <option value="$250,000 - $500,000">$250,000 – $500,000</option>
@@ -415,160 +418,79 @@ export default function OnlineNDA() {
                 <option value="Over $1,000,000">Over $1,000,000</option>
               </select>
             </div>
-            <div className="md:col-span-2">
-              <label className="block text-sm font-semibold text-gray-600 mb-1">
-                Credit Score <span className="text-red-500">*</span>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Purchase Timeframe
               </label>
-              <select name="creditScore" required value={form.creditScore} onChange={handleChange} className="form-input">
-                <option value="">Select credit range...</option>
-                <option value="Excellent — 750 or above">Excellent — 750 or above</option>
-                <option value="Good — 700–749">Good — 700–749</option>
-                <option value="Fair — 650–699">Fair — 650–699</option>
-                <option value="Below 650">Below 650</option>
-                <option value="Unknown / Not Sure">Unknown / Not Sure</option>
+              <select
+                name="timeframe"
+                value={form.timeframe}
+                onChange={handleChange}
+                className="form-input"
+              >
+                <option value="">Select timeframe...</option>
+                <option value="Immediately">Immediately</option>
+                <option value="1-3 months">1–3 months</option>
+                <option value="3-6 months">3–6 months</option>
+                <option value="6-12 months">6–12 months</option>
+                <option value="Just researching">Just researching</option>
               </select>
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-1">
-              About You — Brief Resume of Last 10 Years Work Experience <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              name="workHistory"
-              required
-              value={form.workHistory}
-              onChange={handleChange}
-              rows={4}
-              className="form-input resize-none"
-              placeholder="Please provide a brief summary of your professional background and relevant experience over the last 10 years..."
-            />
-          </div>
-
-          {/* ── SECTION 3: Business Interest ── */}
-          <h3 className="section-heading text-lg font-bold pt-4" style={{ fontFamily: "Raleway, sans-serif" }}>
-            Business of Interest
-          </h3>
-
-          <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-1">
-              Listing of Interest — If you do not have a specific business in mind, please put N/A <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="listingOfInterest"
-              required
-              value={form.listingOfInterest}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="e.g., Restaurant on Listing #1234, or N/A — open to any opportunity"
-            />
-          </div>
-
-          {/* ── SECTION 4: Full NDA Legal Text ── */}
-          <div className="mt-8">
-            <h3 className="section-heading text-lg font-bold mb-4" style={{ fontFamily: "Raleway, sans-serif" }}>
-              Non-Disclosure Agreement
-            </h3>
-            <div
-              className="bg-gray-50 border border-gray-300 rounded p-5 text-xs text-gray-600 leading-relaxed space-y-3"
-              style={{ maxHeight: "320px", overflowY: "auto", fontFamily: "Georgia, serif" }}
+          {/* NDA Agreement Text */}
+          <div className="bg-gray-50 border border-gray-300 rounded p-5 text-sm text-gray-600 leading-relaxed">
+            <h4
+              className="font-bold text-gray-800 text-base mb-3"
+              style={{ fontFamily: "Raleway, sans-serif" }}
             >
-              <p className="font-bold text-sm text-gray-900 uppercase tracking-wide">
-                Online Non-Disclosure Terms Are Not Negotiable. You Are Agreeing to the Non-Disclosure.
-              </p>
-              <p>
-                It is understood and agreed to that we the BROKER identified herein will provide
-                disclosure of confidential Information that must not be disclosed or shared with
-                anyone other than the BROKER, SELLER, and their financial and legal advisors. To
-                ensure the protection of such Information, and to preserve any confidentiality
-                necessary under patent and/or trade secret laws, it is agreed to the following terms
-                of this Non-Disclosure Agreement.
-              </p>
-              <p>
-                BUYER agrees all information provided by BROKER to BUYER is confidential and its
-                disclosure to others may be damaging and detrimental to the business and that BUYER
-                agrees to sign a Memo Record of Showing or provide similar acknowledgement on every
-                business disclosed by BROKER to BUYER providing proof that a business(s) was
-                disclosed to the BUYER.
-              </p>
-              <p>
-                BUYER agrees not to provide information regarding a disclosed business to anyone
-                except those who may be directly involved in a sale and their financial or legal
-                advisors or as ordered by law. <strong>BUYER expressly agrees NOT to contact
-                SELLER(s), nor any person related to the business (including but not limited to
-                employees, suppliers, landlords, or business associates), directly at any time, for
-                any reason, without the prior written consent of BROKER.</strong> All communications,
-                inquiries, offers, negotiations, and requests directed to SELLER must be conducted
-                exclusively through BROKER. Any direct contact by BUYER with SELLER or parties
-                related to the business, without BROKER's express written consent, shall constitute
-                a material breach of this Agreement.
-              </p>
-              <p>
-                BUYER agrees that he or she may be liable for BROKER'S full fee if either of the
-                following conditions occurs: (1) BUYER purchases a business disclosed to them by the
-                BROKER without the involvement of the BROKER; or (2) BUYER leases, manages, or
-                otherwise becomes involved with a business disclosed to them by BROKER.
-              </p>
-              <p>
-                <strong>TWO-YEAR TAIL PERIOD:</strong> BUYER further agrees that if BUYER purchases,
-                leases, manages, or otherwise acquires any direct or indirect interest in any
-                business that was introduced to or shown to BUYER by BROKER, within a period of{" "}
-                <strong>twenty-four (24) months</strong> from the date of this Agreement or from the
-                date such business was disclosed to BUYER (whichever is later), BUYER shall be
-                liable to BROKER for BROKER's full commission fee, regardless of whether BROKER's
-                listing agreement with SELLER remains in effect at the time of such transaction.
-                This obligation survives the expiration or termination of any listing agreement
-                between BROKER and SELLER. BUYER acknowledges that this two-year tail provision is
-                a material term of this Agreement and constitutes fair and reasonable consideration
-                for the confidential business information disclosed by BROKER.
-              </p>
-              <p>
-                BUYER agrees that he/she will be personally liable to pay BROKER for the BROKER's
-                fee paid by SELLER if BUYER does any act that results in harm to SELLER's business
-                or BROKER's contract rights with the SELLER. Such acts include but are not limited
-                to BUYER making any information disclosed to them on a business public thereby
-                breaking the strict confidentiality of the transaction or BUYER using any
-                information provided by SELLER for their own personal gain other than purchasing
-                SELLER's business or anything associated with said business.
-              </p>
-              <p>
-                BUYER understands that the SELLER has supplied all Information without BROKER's
-                confirmation. It is the BUYER's responsibility to confirm the accuracy of any and
-                all information provided to the BUYER. BUYER also agrees to indemnify and hold
-                BROKER and its agents harmless from any claims or damages which may occur from the
-                inaccuracy or incompleteness of any information provided to BUYER with respect to
-                any business disclosed or purchased.
-              </p>
-              <p>
-                BUYER agrees and understands that BROKER represents the SELLER and his or her
-                interests based on a contract with the SELLER and that BROKER has no contracted
-                rights with the BUYER. Be it understood that the BROKER's duty is limited only to
-                negotiating the sale of the business at mutually agreed upon terms and conditions
-                between BUYER and SELLER. Our compensation will be received from the SELLER unless
-                other arrangements are made with you in writing.
-              </p>
-              <p className="text-gray-500 italic">
-                This agreement is governed by the laws of the State of Texas. This electronic
-                signature constitutes a legally binding agreement under the Electronic Signatures in
-                Global and National Commerce Act (E-SIGN Act), 15 U.S.C. § 7001 et seq.
-              </p>
-            </div>
+              Non-Disclosure Agreement
+            </h4>
+            <p className="mb-3">
+              In consideration of {brokerConfig.companyName} ("Broker") furnishing me with
+              information about businesses for sale, I hereby agree that:
+            </p>
+            <ol className="list-decimal list-inside space-y-2">
+              <li>
+                I will keep all information received from Broker strictly confidential and will not
+                disclose it to any third party without prior written consent from Broker.
+              </li>
+              <li>
+                I will use the information solely for the purpose of evaluating the potential
+                purchase of a business.
+              </li>
+              <li>
+                I will not contact the business owner, employees, customers, or suppliers directly
+                without Broker's prior written consent.
+              </li>
+              <li>
+                I understand that all information is provided in good faith and that Broker makes no
+                representations or warranties as to its accuracy or completeness.
+              </li>
+              <li>
+                I acknowledge that any breach of this agreement may cause irreparable harm to the
+                Broker and the business seller.
+              </li>
+            </ol>
+            <p className="mt-3 text-xs text-gray-500">
+              This agreement is governed by the laws of the State of Texas. This electronic
+              signature is legally binding under the Electronic Signatures in Global and National
+              Commerce Act (E-SIGN Act).
+            </p>
           </div>
 
-          {/* ── Signature Pad ── */}
+          {/* Signature Pad */}
           <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Electronic Signature <span className="text-red-500">*</span>
             </label>
             <p className="text-xs text-gray-500 mb-2">
-              I hereby understand and agree to the Non-Disclosure Terms outlined herein. Please use
-              mouse or finger to draw your signature below.
+              Sign your name in the box below using your mouse or finger (on touch devices).
             </p>
             <canvas
               ref={canvasRef}
-              width={700}
-              height={160}
+              width={600}
+              height={150}
               className="signature-canvas w-full border-2 border-dashed border-gray-300 rounded bg-white"
               style={{ touchAction: "none", cursor: "crosshair", maxWidth: "100%" }}
               onMouseDown={startDraw}
@@ -580,30 +502,33 @@ export default function OnlineNDA() {
               onTouchEnd={stopDraw}
             />
             <div className="flex items-center justify-between mt-2">
-              <span className={`text-xs font-semibold ${hasSigned ? "text-green-600" : "text-gray-400"}`}>
+              <span className="text-xs text-gray-400">
                 {hasSigned ? "✓ Signature captured" : "Draw your signature above"}
               </span>
-              <button type="button" onClick={clearSignature} className="text-xs text-gray-500 hover:text-red-500 underline">
+              <button
+                type="button"
+                onClick={clearSignature}
+                className="text-xs text-gray-500 hover:text-red-500 underline"
+              >
                 Clear Signature
               </button>
             </div>
           </div>
 
-          {/* ── Agreement Checkbox ── */}
-          <div className="flex items-start gap-3 bg-gray-50 border border-gray-200 rounded p-4">
+          {/* Agreement checkbox */}
+          <div className="flex items-start gap-3">
             <input
               type="checkbox"
               id="agreeToNDA"
               name="agreeToNDA"
               checked={form.agreeToNDA}
               onChange={handleChange}
-              className="mt-1 w-4 h-4 accent-[#00b4c8] flex-shrink-0"
+              className="mt-1 w-4 h-4 accent-[#00b4c8]"
             />
             <label htmlFor="agreeToNDA" className="text-sm text-gray-600 leading-relaxed">
-              I have read, understand, and agree to the Non-Disclosure Agreement above in its
-              entirety. I understand that my electronic signature and this checkbox constitute my
-              full legal agreement to the terms of this NDA, and that these terms are{" "}
-              <strong>not negotiable</strong>. <span className="text-red-500">*</span>
+              I have read and agree to the Non-Disclosure Agreement above. I understand that my
+              electronic signature and this checkbox constitute my legal agreement to the terms of
+              this NDA. <span className="text-red-500">*</span>
             </label>
           </div>
 
@@ -616,14 +541,14 @@ export default function OnlineNDA() {
           <button
             type="submit"
             disabled={submitting}
-            className="btn-teal-solid w-full py-4 text-base font-bold disabled:opacity-60"
+            className="btn-teal-solid w-full py-3 text-base disabled:opacity-60"
           >
-            {submitting ? "Submitting NDA..." : "SUBMIT NDA →"}
+            {submitting ? "Submitting..." : "Submit Non-Disclosure Agreement"}
           </button>
 
           <p className="text-xs text-gray-400 text-center">
             Your information is kept strictly confidential and used solely for buyer qualification
-            and communication purposes. This submission is date and time stamped.
+            and communication purposes.
           </p>
         </form>
       </div>

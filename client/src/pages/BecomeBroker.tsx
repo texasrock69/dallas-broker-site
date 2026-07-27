@@ -21,12 +21,12 @@ export default function BecomeBroker() {
         </h2>
         <div className="w-12 h-1 bg-[#00b4c8] mb-6" />
 
-        <p className="text-gray-500 leading-relaxed mb-6">
+        <p className="text-gray-600 leading-relaxed mb-6">
           Are you interested in becoming a professional business broker? The Business Broker
           Development Group offers a proven system, comprehensive training, and ongoing support to
           help you build a successful business brokerage practice.
         </p>
-        <p className="text-gray-500 leading-relaxed mb-8">
+        <p className="text-gray-600 leading-relaxed mb-8">
           For more information about joining our network and becoming a business broker in your
           area, please visit our main website.
         </p>
@@ -45,7 +45,7 @@ export default function BecomeBroker() {
             {brokerConfig.brokerName}
           </div>
           <div className="text-gray-500 text-sm mb-2">{brokerConfig.brokerTitle}</div>
-          <div className="text-gray-500 text-sm">{brokerConfig.brokerPhoneDisplay}</div>
+          <div className="text-gray-600 text-sm">{brokerConfig.brokerPhoneDisplay}</div>
           <a href={`mailto:${brokerConfig.brokerEmail}`} className="text-[#00b4c8] hover:underline text-sm">
             {brokerConfig.brokerEmail}
           </a>
