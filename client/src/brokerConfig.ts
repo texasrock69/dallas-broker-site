@@ -27,7 +27,7 @@ export const brokerConfig = {
   heroImage: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663670189393/GXSYVPAGsWxnrTZv.jpg",
 
   // Broker headshot (optional - leave empty string to hide)
-  brokerPhoto: "/manus-storage/toby_headshot_6eb5af2d.jpeg",
+  brokerPhoto: "/manus-storage/toby_headshot_0567b3f6.jpeg",
 
   // Testimonial (optional)
   testimonial: {
