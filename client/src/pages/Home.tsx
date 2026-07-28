@@ -10,7 +10,7 @@ const testimonials = [
     author: "Joey G.",
     role: "Former Business Owner",
     label: "Another Testimonial",
-    image: "/manus-storage/testimonial_joey_778975a2.jpg",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663670189393/ZdvHcluiDkEADnlg.jpg",
     textSide: "left" as const,
     // Joey: blurred office background — person is centered/right, text goes left
   },
@@ -20,7 +20,7 @@ const testimonials = [
     author: "Ann G.",
     role: "Former Business Owner",
     label: "Former Business Owner",
-    image: "/manus-storage/testimonial_ann_0756a48f.jpg",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663670189393/JEKtwGLTTRBMjztT.jpg",
     textSide: "left" as const,
     // Ann: face is on the right side of the photo — text goes left
   },
@@ -30,7 +30,7 @@ const testimonials = [
     author: "Richard and Darby P.",
     role: "Business Owners",
     label: "What People Say",
-    image: "/manus-storage/testimonial_richard_d500dfa6.jpg",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663670189393/eULVtvKsnkAhIqWC.jpg",
     textSide: "right" as const,
     // Richard: man walking on bridge is on the left — text goes right
   },
