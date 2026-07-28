@@ -450,27 +450,43 @@ export default function Home() {
               </p>
 
               {/* Broker card */}
-              <div className="flex items-center gap-4 p-4 border border-gray-200 rounded bg-gray-50">
-                {brokerConfig.brokerPhoto && (
-                  <img
-                    src={brokerConfig.brokerPhoto}
-                    alt={brokerConfig.brokerName}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-[#00b4c8]"
-                  />
-                )}
-                <div>
-                  <div
-                    className="font-bold text-gray-800"
-                    style={{ fontFamily: "Raleway, sans-serif" }}
-                  >
-                    {brokerConfig.brokerName}
+              <div className="flex flex-col items-start gap-4 p-4 border border-gray-200 rounded bg-gray-50">
+                <div className="flex items-center gap-4 w-full">
+                  {brokerConfig.brokerPhoto && (
+                    <img
+                      src={brokerConfig.brokerPhoto}
+                      alt={brokerConfig.brokerName}
+                      className="w-16 h-16 rounded-full object-cover border-2 border-[#00b4c8] flex-shrink-0"
+                    />
+                  )}
+                  <div className="flex-1">
+                    <div
+                      className="font-bold text-gray-800"
+                      style={{ fontFamily: "Raleway, sans-serif" }}
+                    >
+                      {brokerConfig.brokerName}
+                    </div>
+                    <div className="text-gray-500 text-xs mb-2">{brokerConfig.brokerTitle}</div>
+                    <a
+                      href={`tel:${brokerConfig.brokerPhone}`}
+                      className="text-[#00b4c8] text-sm font-semibold hover:underline inline-block"
+                    >
+                      {brokerConfig.brokerPhoneDisplay}
+                    </a>
                   </div>
-                  <div className="text-gray-500 text-xs mb-1">{brokerConfig.brokerTitle}</div>
+                </div>
+                <div className="w-full pt-2 border-t border-gray-200">
+                  <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                    With 30+ years of combined industry experience, I specialize in confidential business valuations, strategic marketing, and connecting serious buyers with the right opportunities. My performance-based approach means your success is my success.
+                  </p>
                   <a
-                    href={`tel:${brokerConfig.brokerPhone}`}
-                    className="text-[#00b4c8] text-sm font-semibold hover:underline"
+                    href="https://www.linkedin.com/in/toby-barker-012198"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-[#00b4c8] text-sm font-semibold hover:underline"
                   >
-                    {brokerConfig.brokerPhoneDisplay}
+                    <span>Connect on LinkedIn</span>
+                    <span>→</span>
                   </a>
                 </div>
               </div>
