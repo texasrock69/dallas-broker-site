@@ -3,14 +3,14 @@ import Layout from "@/components/Layout";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 
-const testimonials = [
+export const testimonials = [
   {
     quote:
       "The service we received from Toby @ ProPlus Business Alliance definitely exceeded any expectations. I would highly recommend Toby & ProPlus to any business owner who is entertaining their options or just curious about the value of their business. Our business sold in five months and for pretty close to the estimated value from our initial visit.",
     author: "Joey G.",
     role: "Former Business Owner",
     label: "Another Testimonial",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663670189393/ZdvHcluiDkEADnlg.jpg",
+    image: "/assets/sell-reference.jpg",
     textSide: "left" as const,
     // Joey: blurred office background — person is centered/right, text goes left
   },
@@ -20,7 +20,7 @@ const testimonials = [
     author: "Ann G.",
     role: "Former Business Owner",
     label: "Former Business Owner",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663670189393/JEKtwGLTTRBMjztT.jpg",
+    image: "/assets/buy-reference.jpg",
     textSide: "left" as const,
     // Ann: face is on the right side of the photo — text goes left
   },
@@ -30,7 +30,7 @@ const testimonials = [
     author: "Richard and Darby P.",
     role: "Business Owners",
     label: "What People Say",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663670189393/eULVtvKsnkAhIqWC.jpg",
+    image: "/assets/market-reference.jpg",
     textSide: "right" as const,
     // Richard: man walking on bridge is on the left — text goes right
   },

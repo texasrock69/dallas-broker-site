@@ -24,10 +24,10 @@ export const brokerConfig = {
   locationShort: "Dallas / Fort Worth, TX",
 
   // Hero image path (upload your city skyline here)
-  heroImage: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663670189393/GXSYVPAGsWxnrTZv.jpg",
+  heroImage: "/assets/dallas-hero.webp",
 
   // Broker headshot (optional - leave empty string to hide)
-  brokerPhoto: "/manus-storage/toby_headshot_0567b3f6.jpeg",
+  brokerPhoto: "/assets/toby-headshot.jpeg",
 
   // Testimonial (optional)
   testimonial: {
