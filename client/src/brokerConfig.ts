@@ -24,7 +24,7 @@ export const brokerConfig = {
   locationShort: "Dallas / Fort Worth, TX",
 
   // Hero image path (upload your city skyline here)
-  heroImage: "/assets/dallas-hero.webp",
+  heroImage: "/assets/dallas-hero-refined.webp",
 
   // Broker headshot (optional - leave empty string to hide)
   brokerPhoto: "/assets/toby-headshot.jpeg",

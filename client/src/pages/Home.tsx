@@ -230,7 +230,13 @@ export default function Home() {
         className="parallax-hero"
         style={{ backgroundImage: `url(${brokerConfig.heroImage})` }}
       >
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0) 100%)" }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(3,14,28,0.48) 0%, rgba(3,14,28,0.28) 38%, rgba(3,14,28,0.08) 68%, rgba(3,14,28,0.08) 100%), linear-gradient(to top, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0) 100%)",
+          }}
+        />
         <div className="hero-inner">
           <div className="max-w-2xl">
             <p

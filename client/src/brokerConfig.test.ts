@@ -4,7 +4,7 @@ import { testimonials } from "./pages/Home";
 
 describe("Dallas broker image assets", () => {
   it("uses project-local paths for the hero and broker headshot", () => {
-    expect(brokerConfig.heroImage).toBe("/assets/dallas-hero.webp");
+    expect(brokerConfig.heroImage).toBe("/assets/dallas-hero-refined.webp");
     expect(brokerConfig.brokerPhoto).toBe("/assets/toby-headshot.jpeg");
   });
 

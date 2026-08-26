@@ -13,3 +13,9 @@
 - [x] Confirm Railway deploys the Dallas site from the updated repository and serves the local image paths
 
 - [x] Compare the deployed Dallas skyline with the intended clearer blue-and-pink hero treatment
+
+- [x] Refine the Dallas hero sky with a bluer upper-left region, clearer detail, and gentler skyline contrast
+- [x] Verify the refined Dallas hero remains readable behind the homepage copy and deploy it
+
+- [ ] Save the refined Dallas hero image and overlay update to the connected repository
+- [ ] Confirm the live Dallas homepage serves the refined hero and retains readable copy
