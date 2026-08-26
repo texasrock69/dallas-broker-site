@@ -9,5 +9,5 @@
 > Note: The sample broker project must remain untouched.
 - [x] Add Vitest coverage for all three Dallas reference image paths in Home.tsx
 - [x] Commit the Dallas image files and local references to the Dallas GitHub repository for Railway deployment
-- [ ] Verify the Dallas project is connected to the GitHub repository containing the self-contained assets
-- [ ] Confirm Railway deploys the Dallas site from the updated repository and serves the local image paths
+- [x] Verify the Dallas project is connected to the GitHub repository containing the self-contained assets
+- [x] Confirm Railway deploys the Dallas site from the updated repository and serves the local image paths
