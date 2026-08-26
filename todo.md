@@ -11,3 +11,5 @@
 - [x] Commit the Dallas image files and local references to the Dallas GitHub repository for Railway deployment
 - [x] Verify the Dallas project is connected to the GitHub repository containing the self-contained assets
 - [x] Confirm Railway deploys the Dallas site from the updated repository and serves the local image paths
+
+- [x] Compare the deployed Dallas skyline with the intended clearer blue-and-pink hero treatment
