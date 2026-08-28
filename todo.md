@@ -26,5 +26,8 @@
 - [x] Remove the visible Dallas homepage chat widget for a cleaner interface
 - [x] Apply and verify any necessary mobile layout adjustments
 
-- [ ] Record the conclusion from a production mobile review of the live Dallas homepage
-- [ ] Publish the chat-widget removal to Railway and confirm it is absent from the live site
+- [x] Record the conclusion from a production mobile review of the live Dallas homepage
+- [x] Publish the chat-widget removal to Railway and confirm it is absent from the live site
+
+- [x] Correct the Dallas mobile hero height and text contrast after the production phone review
+- [ ] Re-check the live Dallas homepage at a 375 by 812 mobile viewport after the correction

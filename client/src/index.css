@@ -167,11 +167,20 @@
   @media (max-width: 768px) {
     .parallax-hero {
       background-attachment: scroll;
-      height: 450px;
+      height: 560px;
+      background-position: 62% center;
     }
     .parallax-hero > .hero-inner {
       padding-left: 1rem;
       padding-right: 1rem;
+      padding-bottom: 2rem;
+    }
+    .parallax-hero > .hero-inner h1 {
+      font-size: clamp(2.25rem, 10vw, 3rem) !important;
+    }
+    .parallax-hero > .hero-inner p.text-xl {
+      font-size: 1rem;
+      line-height: 1.5;
     }
   }
 
