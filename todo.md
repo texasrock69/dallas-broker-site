@@ -30,4 +30,4 @@
 - [x] Publish the chat-widget removal to Railway and confirm it is absent from the live site
 
 - [x] Correct the Dallas mobile hero height and text contrast after the production phone review
-- [ ] Re-check the live Dallas homepage at a 375 by 812 mobile viewport after the correction
+- [x] Re-check the live Dallas homepage at a 375 by 812 mobile viewport after the correction
