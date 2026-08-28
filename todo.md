@@ -21,3 +21,10 @@
 - [x] Confirm the live Dallas homepage serves the refined hero and retains readable copy
 
 - [x] Confirm the refined Dallas skyline, three reference images, and Toby headshot are all tracked in the Dallas GitHub repository and served without Manus-linked image URLs
+
+- [x] Review the live Dallas homepage at a mobile viewport and record responsive layout findings
+- [x] Remove the visible Dallas homepage chat widget for a cleaner interface
+- [x] Apply and verify any necessary mobile layout adjustments
+
+- [ ] Record the conclusion from a production mobile review of the live Dallas homepage
+- [ ] Publish the chat-widget removal to Railway and confirm it is absent from the live site
