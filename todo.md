@@ -19,3 +19,5 @@
 
 - [ ] Save the refined Dallas hero image and overlay update to the connected repository
 - [ ] Confirm the live Dallas homepage serves the refined hero and retains readable copy
+
+- [ ] Confirm the refined Dallas skyline, three reference images, and Toby headshot are all tracked in the Dallas GitHub repository and served without Manus-linked image URLs
