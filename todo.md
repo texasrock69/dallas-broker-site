@@ -58,3 +58,9 @@
 
 - [x] Document the revised direct-to-broker architecture that avoids shared-inbox forwarding and recipient caps
 - [x] Define the selected architecture’s per-broker routing, signature PDF, and Google Workspace delivery requirements
+
+- [x] Compare Dallas and sample broker hero readability at desktop and phone sizes
+- [x] Prepare an optional non-destructive Dallas hero contrast refinement only if it improves copy readability
+
+- [ ] Publish the approved Dallas hero readability improvement to GitHub and Railway
+- [ ] Verify the live Dallas hero remains bright and readable on desktop and mobile

@@ -234,7 +234,7 @@ export default function Home() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg, rgba(3,14,28,0.48) 0%, rgba(3,14,28,0.28) 38%, rgba(3,14,28,0.08) 68%, rgba(3,14,28,0.08) 100%), linear-gradient(to top, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0) 100%)",
+              "linear-gradient(to right, rgba(3,14,28,0.62) 0%, rgba(3,14,28,0.35) 55%, rgba(3,14,28,0) 100%), linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%)",
           }}
         />
         <div className="hero-inner">
@@ -251,6 +251,7 @@ export default function Home() {
                 fontFamily: "Raleway, sans-serif",
                 fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
                 letterSpacing: "-0.02em",
+                textShadow: "0 2px 12px rgba(0,0,0,0.75), 0 1px 4px rgba(0,0,0,0.9)",
               }}
             >
               Selling Your Business
