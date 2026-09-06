@@ -31,3 +31,30 @@
 
 - [x] Correct the Dallas mobile hero height and text contrast after the production phone review
 - [x] Re-check the live Dallas homepage at a 375 by 812 mobile viewport after the correction
+
+- [ ] Inspect the Online NDA form, signature capture, and current Web3Forms email payload
+- [ ] Replace the raw-text NDA email with a clean document-style completed agreement that includes the signature
+- [ ] Add a downloadable PDF copy of each completed NDA submission to the email workflow
+- [ ] Add automated coverage for signature inclusion and PDF delivery data
+- [ ] Test the completed NDA output and deploy the Dallas email workflow update
+
+- [x] Confirm Web3Forms subscription limits for attachment-enabled NDA, contact, and valuation forms
+- [x] Define a reusable broker-specific form routing configuration for Google Workspace recipient addresses
+
+- [x] Compare Web3Forms account structures and costs for 15 broker recipient email addresses
+
+- [x] Research low-cost form-delivery alternatives for 15 broker websites without restrictive recipient-address limits
+- [x] Recommend a scalable signed-NDA PDF and Google Workspace email-routing architecture
+
+- [x] Compare direct-to-broker form delivery options that avoid central inbox forwarding and recipient-address caps
+
+- [x] Compare the Dallas and sample broker “How We Sell Your Business” process styling at desktop and mobile sizes
+- [x] Match Dallas process numbers, green checkmarks, connector lines, contrast, and responsive spacing to the sample broker site
+- [x] Verify and publish the matching Dallas process section on desktop and mobile
+
+- [x] Compare the Dallas and sample process sections at a true mobile viewport
+- [ ] Save and deploy the Dallas process-section update to GitHub and Railway
+- [ ] Verify the live Dallas process section on desktop and mobile after deployment
+
+- [x] Document the revised direct-to-broker architecture that avoids shared-inbox forwarding and recipient caps
+- [x] Define the selected architecture’s per-broker routing, signature PDF, and Google Workspace delivery requirements

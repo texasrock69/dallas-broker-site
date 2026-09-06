@@ -400,13 +400,18 @@ export default function Home() {
             </h2>
           </div>
           <div className="grid md:grid-cols-4 gap-6">
-            {processSteps.map((s) => (
+            {processSteps.map((s, idx) => (
               <div key={s.step} className="relative">
-                <div
-                  className="text-5xl font-extrabold mb-4"
-                  style={{ color: "rgba(0,180,200,0.15)", fontFamily: "Raleway, sans-serif" }}
-                >
-                  {s.step}
+                <div className="flex items-center gap-3 mb-4">
+                  <div
+                    className="text-4xl font-extrabold"
+                    style={{ color: "#00b4c8", fontFamily: "Raleway, sans-serif" }}
+                  >
+                    {s.step}
+                  </div>
+                  <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center text-white text-sm font-bold">
+                    ✓
+                  </div>
                 </div>
                 <h3
                   className="text-white font-bold text-lg mb-2"
@@ -414,9 +419,14 @@ export default function Home() {
                 >
                   {s.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
-                {/* connector line */}
-                <div className="hidden md:block absolute top-6 right-0 w-1/2 h-px bg-[#00b4c8]/20" />
+                <p className="text-gray-300 text-sm leading-relaxed">{s.desc}</p>
+                {/* connector line to next step */}
+                {idx < processSteps.length - 1 && (
+                  <div
+                    className="hidden md:block absolute top-6 -right-3 w-6 h-px"
+                    style={{ borderTop: "2px dashed #00b4c8" }}
+                  />
+                )}
               </div>
             ))}
           </div>
