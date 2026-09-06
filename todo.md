@@ -62,5 +62,7 @@
 - [x] Compare Dallas and sample broker hero readability at desktop and phone sizes
 - [x] Prepare an optional non-destructive Dallas hero contrast refinement only if it improves copy readability
 
-- [ ] Publish the approved Dallas hero readability improvement to GitHub and Railway
-- [ ] Verify the live Dallas hero remains bright and readable on desktop and mobile
+- [x] Publish the approved Dallas hero readability improvement to GitHub and Railway
+- [x] Verify the live Dallas hero remains bright and readable on desktop and mobile
+
+- [x] Verify the approved Dallas hero readability update is recorded in the Dallas GitHub repository
