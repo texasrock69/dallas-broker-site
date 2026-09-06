@@ -53,8 +53,8 @@
 - [x] Verify and publish the matching Dallas process section on desktop and mobile
 
 - [x] Compare the Dallas and sample process sections at a true mobile viewport
-- [ ] Save and deploy the Dallas process-section update to GitHub and Railway
-- [ ] Verify the live Dallas process section on desktop and mobile after deployment
+- [x] Save and deploy the Dallas process-section update to GitHub and Railway
+- [x] Verify the live Dallas process section on desktop and mobile after deployment
 
 - [x] Document the revised direct-to-broker architecture that avoids shared-inbox forwarding and recipient caps
 - [x] Define the selected architecture’s per-broker routing, signature PDF, and Google Workspace delivery requirements
