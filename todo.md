@@ -59,6 +59,21 @@
 - [x] Document the revised direct-to-broker architecture that avoids shared-inbox forwarding and recipient caps
 - [x] Define the selected architecture’s per-broker routing, signature PDF, and Google Workspace delivery requirements
 
+- [x] Compare historical submission archive, export, and per-broker separation capabilities across candidate form systems
+- [x] Select a direct-to-broker form option that preserves searchable historical NDA records per website
+
+- [x] Identify the current Form Builder provider and verify whether its forms can be embedded outside Wix
+- [x] Confirm whether the existing Form Builder supports broker-separated records, direct email notifications, signatures, and PDF submissions
+
+- [x] Compare lower-cost archived-form platforms against 123FormBuilder for the 15-broker program
+- [x] Identify the lowest-cost option that supports direct broker routing, signatures, PDF records, and historical submissions
+
+- [x] Compare lower-cost archived-form options against the actual 48-form, 23-submission-per-month, and 12.9 MB storage profile
+
+- [x] Compare lower-cost archived-form platforms against 123FormBuilder for the 15-broker program
+- [x] Identify the lowest-cost option that supports direct broker routing, signatures, PDF records, and historical submissions
+- [x] Compare lower-cost archived-form options against the actual 48-form, 23-submission-per-month, and 12.9 MB storage profile
+
 - [x] Compare Dallas and sample broker hero readability at desktop and phone sizes
 - [x] Prepare an optional non-destructive Dallas hero contrast refinement only if it improves copy readability
 
@@ -66,3 +81,7 @@
 - [x] Verify the live Dallas hero remains bright and readable on desktop and mobile
 
 - [x] Verify the approved Dallas hero readability update is recorded in the Dallas GitHub repository
+
+- [x] Research 123FormBuilder’s current archive, embed, direct-email, signature, PDF, and pricing capabilities
+- [x] Compare 123FormBuilder, Tally, Cognito Forms, and Fillout against the actual broker workload
+- [x] Select and document the lowest-cost platform that preserves direct broker delivery and historical signed-NDA records
