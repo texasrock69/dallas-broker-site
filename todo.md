@@ -85,3 +85,16 @@
 - [x] Research 123FormBuilder’s current archive, embed, direct-email, signature, PDF, and pricing capabilities
 - [x] Compare 123FormBuilder, Tally, Cognito Forms, and Fillout against the actual broker workload
 - [x] Select and document the lowest-cost platform that preserves direct broker delivery and historical signed-NDA records
+
+- [x] Define the Dallas Cognito NDA proof-of-concept acceptance checks and no-card trial safeguards
+- [ ] Create a no-card Cognito Forms trial and a Dallas NDA test form
+- [ ] Add a non-public Dallas test route with the Cognito NDA embed and direct broker email notification
+- [ ] Submit and verify a test NDA signature, completed PDF, email delivery, archived record, and mobile behavior
+- [ ] Document whether Cognito Forms is ready to replace the current Dallas NDA workflow and how to end the trial safely
+
+- [x] Defer the dad’s website audit to a separate thread at the user’s request
+
+- [x] Inspect the verified Dallas Netlify duplicate’s default domain and GitHub deployment connection
+- [x] Confirm Dallas and BBDG sample broker public traffic is served by Railway before any Netlify disconnect
+- [x] Disable the verified-unused Dallas Netlify duplicate and confirm its default Netlify address no longer serves a deployment
+- [x] Inspect the Netlify project list for any separate BBDG sample broker duplicate and disable it only if it is unused; no separate sample broker Netlify project exists
