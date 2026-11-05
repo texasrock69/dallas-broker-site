@@ -1,7 +1,8 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
+import { useLayoutEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -18,6 +19,13 @@ import OnlineNDA from "./pages/OnlineNDA";
 import BecomeBroker from "./pages/BecomeBroker";
 
 function Router() {
+  const [location] = useLocation();
+
+  // Wouter uses client-side navigation, so reset retained scroll position on every new page.
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [location]);
+
   return (
     <Switch>
       <Route path="/" component={Home} />
